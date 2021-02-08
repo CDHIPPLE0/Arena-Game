@@ -1,15 +1,12 @@
 function main() {
   let gameState = {
     time: 0,
-    posY: 3,
+    posY: 5,
     posX: 2,
-    lastPosY: 3,
-    lastPosX: 2,
   };
 
   world = (command) => {
     gameState.time++;
-    let { posY, posX } = gameState;
     let x = {
       canPass: false,
       message: 'There is a wall here, it is unscalable.',
@@ -22,28 +19,78 @@ function main() {
     };
     let u = {
       canPass: true,
-      message: 'The arena floor is muddy and damp.',
+      message: 'The arena floor is damp and well trodden.',
+      objects: [],
+    };
+    let v = {
+      canPass: true,
+      message: 'There are black stains scattered about the floor.',
+      objects: [],
+    };
+    let w = {
+      canPass: true,
+      message: 'You feel a breeze.',
+      objects: [],
+    };
+    let X = {
+      canPass: false,
+      message:
+        'There is a hatch beneath your feet, it is fitted with a large brass lock.',
+      objects: [],
+    };
+    let E = {
+      canPass: true,
+      message: 'You found the exit!.',
       objects: [],
     };
     const map = [
       [x, x, x, x, x],
-      [x, u, u, u, x],
+      [x, x, x, E, x],
+      [x, x, x, X, x],
+      [x, v, u, w, x],
       [x, o, u, o, x],
-      [x, u, u, u, x],
+      [x, u, u, v, x],
       [x, x, x, x, x],
     ];
+    let colCheck = (command) => {
+      let initY = gameState.posY;
+      let initX = gameState.posX;
+      switch (command) {
+        case 'posY--':
+          initY--;
+          break;
+        case 'posX++':
+          initX++;
+          break;
+        case 'posY++':
+          initY++;
+          break;
+        case 'posX--':
+          initX--;
+          break;
+        default:
+          handleOutput('error');
+          break;
+      }
+      if (map[initY][initX].canPass) {
+        gameState.posY = initY;
+        gameState.posX = initX;
+      } else {
+        handleOutput('invalidMove3', map[initY][initX].message);
+      }
+    };
     let secCommands = {
       north: () => {
-        gameState.posY--;
+        colCheck('posY--');
       },
       east: () => {
-        gameState.posX++;
+        colCheck('posX++');
       },
       south: () => {
-        gameState.posY++;
+        colCheck('posY++');
       },
       west: () => {
-        gameState.posX--;
+        colCheck('posX--');
       },
     };
     let statement = [];
@@ -86,6 +133,8 @@ function main() {
   handleOutput = (message, detail) => {
     let output;
     let outputMessage = {
+      invalidMove3: `${detail}\n`,
+      error: 'ERROR !.',
       start:
         'You are standing in front of a closed gate, before you lies a dark arena',
       fromObject: detail,
