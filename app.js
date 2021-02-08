@@ -3,31 +3,28 @@ function main() {
     time: 0,
     posY: 3,
     posX: 2,
+    lastPosY: 3,
+    lastPosX: 2,
   };
 
   world = (command) => {
     gameState.time++;
-
     let { posY, posX } = gameState;
-
     let x = {
       canPass: false,
       message: 'There is a wall here, it is unscalable.',
       objects: [],
     };
-
     let o = {
       canPass: false,
       message: 'There is a pillar here.',
       objects: [],
     };
-
     let u = {
       canPass: true,
       message: 'The arena floor is dusty and damp.',
       objects: [],
     };
-
     const map = [
       [x, x, x, x, x],
       [x, u, u, u, x],
@@ -35,14 +32,12 @@ function main() {
       [x, u, u, u, x],
       [x, x, x, x, x],
     ];
-
     let secCommands = {
-      north: gameState.posY++,
-      east: gameState.posX++,
-      south: gameState.posY--,
-      west: gameState.posX--,
+      north: posY++,
+      east: posX++,
+      south: posY--,
+      west: posX--,
     };
-
     let statement = [];
     for (const [key, value] of Object.entries(command)) {
       if (value == true) {
