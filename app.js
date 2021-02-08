@@ -1,48 +1,16 @@
+const tiles = require('./assets/tiles');
+const { x, o, u, v, w, X, E } = tiles.tiles;
+
 function main() {
   let gameState = {
     time: 0,
     posY: 5,
     posX: 2,
+    inventory: [],
   };
 
   world = (command) => {
     gameState.time++;
-    let x = {
-      canPass: false,
-      message: 'There is a wall here, it is unscalable.',
-      objects: [],
-    };
-    let o = {
-      canPass: false,
-      message: 'There is a pillar here.',
-      objects: [],
-    };
-    let u = {
-      canPass: true,
-      message: 'The arena floor is damp and well trodden.',
-      objects: [],
-    };
-    let v = {
-      canPass: true,
-      message: 'There are black stains scattered about the floor.',
-      objects: [],
-    };
-    let w = {
-      canPass: true,
-      message: 'You feel a breeze.',
-      objects: [],
-    };
-    let X = {
-      canPass: false,
-      message:
-        'There is a hatch beneath your feet, it is fitted with a large brass lock.',
-      objects: [],
-    };
-    let E = {
-      canPass: true,
-      message: 'You found the exit!.',
-      objects: [],
-    };
     const map = [
       [x, x, x, x, x],
       [x, x, x, E, x],
