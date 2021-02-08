@@ -1,5 +1,3 @@
-const tiles = require('./assets/tiles');
-const { x, o, u, v, w, X, E } = tiles.tiles;
 const outputMessage = require('./assets/messages');
 const {
   error,
@@ -7,6 +5,8 @@ const {
   invalidMove1,
   invalidMove2,
 } = outputMessage.outputMessage;
+const tiles = require('./assets/tiles');
+const { x, o, u, v, w, X, E } = tiles.tiles;
 
 function main() {
   let gameState = {
