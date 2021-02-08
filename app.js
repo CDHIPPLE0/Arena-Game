@@ -58,10 +58,8 @@ function main() {
       if (statement[0] == 'walk') {
         secCommands[statement[1]]();
       }
-      console.log('y:', posY, 'x:', posX);
-      handleOutput('fromObject', map[posY][posX].message);
-      console.log('after', 'Y:', gameState.posY, 'X:', gameState.posX);
     }
+    handleOutput('fromObject', map[gameState.posY][gameState.posX].message);
   };
 
   handleInput = (data) => {
@@ -86,6 +84,7 @@ function main() {
   };
 
   handleOutput = (message, detail) => {
+    let output;
     let outputMessage = {
       start:
         'You are standing in front of a closed gate, before you lies a dark arena',
@@ -93,11 +92,10 @@ function main() {
       invalidMove1: 'You cannot move in multiple directions',
       invalidMove2: 'Be more specific',
     };
-    let output = outputMessage[message] + '\n';
+    output = outputMessage[message] + '\n';
     gameState.outPut = output;
     process.stdout.write(gameState.outPut);
   };
-
   console.clear();
   handleOutput('start');
   process.stdin.on('data', (data) => {
