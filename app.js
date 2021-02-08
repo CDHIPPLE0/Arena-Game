@@ -1,5 +1,12 @@
 const tiles = require('./assets/tiles');
 const { x, o, u, v, w, X, E } = tiles.tiles;
+const outputMessage = require('./assets/messages');
+const {
+  error,
+  start,
+  invalidMove1,
+  invalidMove2,
+} = outputMessage.outputMessage;
 
 function main() {
   let gameState = {
@@ -101,15 +108,12 @@ function main() {
   handleOutput = (message, detail) => {
     let output;
     let outputMessage = {
-      invalidMove3: `${detail}\n`,
-      error: 'ERROR !.',
-      start: `You are standing in front of a closed gate, before you lies a dark arena
-         Base Commands: walk 
-         Directions : west, east, north etc.
-         System : exit, restart`,
       fromObject: detail,
-      invalidMove1: 'You cannot move in multiple directions',
-      invalidMove2: 'Be more specific',
+      invalidMove3: `${detail}\n`,
+      error: error,
+      start: start,
+      invalidMove1: invalidMove1,
+      invalidMove2: invalidMove2,
     };
     output = outputMessage[message] + '\n';
     gameState.outPut = output;
