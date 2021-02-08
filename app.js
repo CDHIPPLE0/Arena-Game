@@ -49,11 +49,14 @@ function main() {
         statement.push(key);
       }
     }
-    if (statement[0] == 'walk') {
-      console.log(secCommands[statement[1]]);
-      secCommands[statement[1]];
+    if (statement.length < 2) {
+      handleOutput('invalidMove2');
+    } else {
+      if (statement[0] == 'walk') {
+        secCommands[statement[1]];
+      }
+      console.log(gameState.posY, gameState.posX);
     }
-    console.log(gameState.posY, gameState.posX);
   };
 
   handleInput = (data) => {
@@ -68,18 +71,21 @@ function main() {
     };
     let input = data.toString().trim().split(' ');
     input.forEach((element) => {
-      command[element] = true;
+      if (command[element] != undefined) {
+        command[element] = true;
+      }
     });
     const { north, east, south, west } = command;
     let directionCount = !!north + !!east + !!south + !!west;
-    directionCount <= 1 ? world(command) : handleOutput('invalidMove');
+    directionCount <= 1 ? world(command) : handleOutput('invalidMove1');
   };
 
   handleOutput = (message) => {
     let outputMessage = {
-      invalidMove: 'You cannot move in multiple directions',
       start:
         'You are standing in front of a closed gate, before you lies a dark arena',
+      invalidMove1: 'You cannot move in multiple directions',
+      invalidMove2: 'Be more specific',
     };
     let output = outputMessage[message] + '\n';
     gameState.outPut = output;
