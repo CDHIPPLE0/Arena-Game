@@ -135,8 +135,10 @@ function main() {
     let outputMessage = {
       invalidMove3: `${detail}\n`,
       error: 'ERROR !.',
-      start:
-        'You are standing in front of a closed gate, before you lies a dark arena',
+      start: `You are standing in front of a closed gate, before you lies a dark arena
+         Base Commands: walk 
+         Directions : west, east, north etc.
+         System : exit, restart`,
       fromObject: detail,
       invalidMove1: 'You cannot move in multiple directions',
       invalidMove2: 'Be more specific',
@@ -146,10 +148,24 @@ function main() {
     process.stdout.write(gameState.outPut);
   };
   console.clear();
-  handleOutput('start');
+  if (gameState.time == 0) {
+    gameState.posY = 5;
+    gameState.posX = 2;
+    handleOutput('start');
+  }
   process.stdin.on('data', (data) => {
-    console.clear();
-    handleInput(data);
+    let command = data.toString().trim().split(' ');
+    if (command[0] == 'exit') {
+      console.clear();
+      process.exit(0);
+    } else if (command[0] == 'restart') {
+      console.clear();
+      gameState.time = 0;
+      main();
+    } else {
+      console.clear();
+      handleInput(data);
+    }
   });
 }
 main();
