@@ -22,7 +22,7 @@ function main() {
     };
     let u = {
       canPass: true,
-      message: 'The arena floor is dusty and damp.',
+      message: 'The arena floor is muddy and damp.',
       objects: [],
     };
     const map = [
@@ -32,8 +32,6 @@ function main() {
       [x, u, u, u, x],
       [x, x, x, x, x],
     ];
-    console.log('y:', posY, 'x:', posX);
-    handleOutput('fromObject', map[posY][posX].message);
     let secCommands = {
       north: () => {
         gameState.posY--;
@@ -60,6 +58,8 @@ function main() {
       if (statement[0] == 'walk') {
         secCommands[statement[1]]();
       }
+      console.log('y:', posY, 'x:', posX);
+      handleOutput('fromObject', map[posY][posX].message);
       console.log('after', 'Y:', gameState.posY, 'X:', gameState.posX);
     }
   };
