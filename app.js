@@ -32,11 +32,21 @@ function main() {
       [x, u, u, u, x],
       [x, x, x, x, x],
     ];
+    console.log('y:', posY, 'x:', posX);
+    handleOutput('fromObject', map[posY][posX].message);
     let secCommands = {
-      north: posY++,
-      east: posX++,
-      south: posY--,
-      west: posX--,
+      north: () => {
+        gameState.posY--;
+      },
+      east: () => {
+        gameState.posX++;
+      },
+      south: () => {
+        gameState.posY++;
+      },
+      west: () => {
+        gameState.posX--;
+      },
     };
     let statement = [];
     for (const [key, value] of Object.entries(command)) {
@@ -48,7 +58,7 @@ function main() {
       handleOutput('invalidMove2');
     } else {
       if (statement[0] == 'walk') {
-        secCommands[statement[1]];
+        secCommands[statement[1]]();
       }
       console.log(gameState.posY, gameState.posX);
     }
@@ -75,10 +85,11 @@ function main() {
     directionCount <= 1 ? world(command) : handleOutput('invalidMove1');
   };
 
-  handleOutput = (message) => {
+  handleOutput = (message, detail) => {
     let outputMessage = {
       start:
         'You are standing in front of a closed gate, before you lies a dark arena',
+      fromObject: detail,
       invalidMove1: 'You cannot move in multiple directions',
       invalidMove2: 'Be more specific',
     };
