@@ -60,7 +60,7 @@ function main() {
       if (statement[0] == 'walk') {
         secCommands[statement[1]]();
       }
-      console.log(gameState.posY, gameState.posX);
+      console.log('after', 'Y:', gameState.posY, 'X:', gameState.posX);
     }
   };
 
@@ -97,6 +97,7 @@ function main() {
     gameState.outPut = output;
     process.stdout.write(gameState.outPut);
   };
+
   console.clear();
   handleOutput('start');
   process.stdin.on('data', (data) => {
