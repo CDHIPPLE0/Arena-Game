@@ -17,6 +17,9 @@
   ],
   "author": "Clinton Hipple",
   "license": "ISC",
+  "bin": {
+    "run": "index.js"
+  },
   "bugs": {
     "url": "https://github.com/CDHIPPLE0/Arena-Game/issues"
   },

@@ -3,8 +3,8 @@ let outputMessage = {
   start: `You are standing in front of a closed gate, before you lies a dark room
   Base Commands: walk, look 
   Directions : north, east, south, west, here
-  System : exit, restart`,
-  invalidMove1: 'You cannot move in multiple directions',
+  System : exit `,
+  invalidMove1: 'You can perform one action per turn',
   invalidMove2: 'That command is not understood',
 };
 

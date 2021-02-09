@@ -41,11 +41,11 @@ let tiles = {
     message: 'You feel a breeze.',
     objects: [],
   },
-  H: {
-    lookRes: 'a hatch in the floor',
+  G: {
+    lookRes: 'a gated exit',
     canPass: false,
     message:
-      'There is a hatch beneath your feet, it is fitted with a large brass lock.',
+      'There is a gate before you, it is fitted with a large brass lock.',
     objects: [],
   },
   E: {
