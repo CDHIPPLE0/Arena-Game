@@ -188,13 +188,12 @@ function main() {
       // };
 
       if (method === 'look') {
-        gameState.time++;
         look[command]();
       } else if (method === 'walk') {
         walk[command]();
       }
-      if (command == 'here') {
-        return 0;
+      if (command == 'here' || command == 'look') {
+        gameState.time++;
       } else {
         if (map[initY][initX].canPass) {
           gameState.time++;
@@ -296,7 +295,7 @@ function main() {
       fromObject: detail,
       invalidMove3: `${detail}\n`,
       error: error.red,
-      start: start.yellow,
+      start: start.cyan,
       invalidMove1: invalidMove1.green,
       invalidMove2: invalidMove2.green,
       moveHere: detail,
@@ -320,6 +319,15 @@ function main() {
     } else if (command[0] == 'exit') {
       console.clear();
       process.exit(0);
+    } else if (command[0] == 'reset') {
+      gameState.time = 0;
+      gameState.posY = 5;
+      gameState.posX = 2;
+      gameState.facing = 'north';
+      gameState.inventory = {};
+      gameState.debug = false;
+      console.clear();
+      handleOutput('start');
     } else {
       console.clear();
       handleInput(data);
