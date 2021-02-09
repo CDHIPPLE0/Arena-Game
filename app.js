@@ -8,6 +8,7 @@ const {
 } = outputMessage.outputMessage;
 const tiles = require('./assets/tiles');
 const { x, o, u, v, w, H, E, U, g } = tiles.tiles;
+var colors = require('colors'); //colors for console
 
 function main() {
   let gameState = {
@@ -18,7 +19,6 @@ function main() {
   };
 
   world = (command) => {
-    gameState.time++;
     const map = [
       [x, x, x, x, x],
       [x, U, x, E, x],
@@ -32,28 +32,50 @@ function main() {
       let initY = gameState.posY;
       let initX = gameState.posX;
       if (method === 'look') {
+        gameState.time++;
         switch (command) {
           case 'posY--':
             let yM = initY - 1;
-            handleOutput('fromObject', `You see ${map[yM][initX].lookRes}`);
+            handleOutput(
+              'fromObject',
+              `You see ${map[yM][initX].lookRes.yellow}`
+            );
             break;
           case 'posX++':
             let xP = initX + 1;
-            handleOutput('fromObject', `You see ${map[initY][xP].lookRes}`);
+            console.log(map[initY][xP].lookRes);
+            handleOutput(
+              'fromObject',
+              `You see ${map[initY][xP].lookRes.yellow}`
+            );
             break;
           case 'posY++':
             let yP = initY + 1;
-            handleOutput('fromObject', `You see ${map[yP][initX].lookRes}`);
+            handleOutput(
+              'fromObject',
+              `You see ${map[yP][initX].lookRes.yellow}`
+            );
             break;
           case 'posX--':
             let xM = initX - 1;
-            handleOutput('fromObject', `You see ${map[initY][xM].lookRes}`);
+            console.log(map[initY][xM].lookRes);
+            handleOutput(
+              'fromObject',
+              `You see ${map[initY][xM].lookRes.yellow}`
+            );
+          case 'here':
+            console.log('in here');
+            handleOutput(
+              'fromObject',
+              `You see ${map[initY][initX].lookRes.yellow}`
+            );
             break;
           default:
             handleOutput('error');
             break;
         }
       } else if (method === 'walk') {
+        gameState.time++;
         switch (command) {
           case 'posY--':
             initY--;
@@ -67,12 +89,15 @@ function main() {
           case 'posX--':
             initX--;
             break;
+          case 'here':
+            handleOutput('moveHere', 'You shuffle around in place');
+            break;
           default:
             handleOutput('error');
             break;
         }
 
-        if (map[initY][initX].canPass) {
+        if (map[initY][initX].canPass && command !== 'here') {
           gameState.posY = initY;
           gameState.posX = initX;
         } else {
@@ -80,6 +105,7 @@ function main() {
         }
       }
     };
+
     let secCommands = {
       north: (method) => {
         colCheck(method, 'posY--');
@@ -92,6 +118,9 @@ function main() {
       },
       west: (method) => {
         colCheck(method, 'posX--');
+      },
+      here: (method) => {
+        colCheck(method, 'here');
       },
     };
     let statement = [];
@@ -110,7 +139,7 @@ function main() {
         secCommands[statement[1]]('look');
       }
     }
-    handleOutput('fromObject', map[gameState.posY][gameState.posX].message);
+    handleOutput('fromObject', map[gameState.posY][gameState.posX].message.dim);
   };
 
   handleInput = (data) => {
@@ -123,6 +152,7 @@ function main() {
       east: false,
       south: false,
       west: false,
+      here: false,
     };
     let input = data.toString().trim().split(' ');
     input.forEach((element) => {
@@ -130,8 +160,8 @@ function main() {
         command[element] = true;
       }
     });
-    const { north, east, south, west } = command;
-    let directionCount = !!north + !!east + !!south + !!west;
+    const { north, east, south, west, here } = command;
+    let directionCount = !!north + !!east + !!south + !!west + !!here;
     directionCount <= 1 ? world(command) : handleOutput('invalidMove1');
   };
 
@@ -140,10 +170,11 @@ function main() {
     let outputMessage = {
       fromObject: detail,
       invalidMove3: `${detail}\n`,
-      error: error,
-      start: start,
+      error: error.red,
+      start: start.yellow,
       invalidMove1: invalidMove1,
       invalidMove2: invalidMove2,
+      moveHere: detail,
     };
     output = outputMessage[message] + '\n';
     gameState.outPut = output;
@@ -166,6 +197,8 @@ function main() {
       main();
     } else {
       console.clear();
+      console.log('GAMETIME:', gameState.time);
+      console.log('POSITION:', gameState.posY, gameState.posX);
       handleInput(data);
     }
   });
