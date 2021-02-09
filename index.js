@@ -295,7 +295,7 @@ function main() {
       fromObject: detail,
       invalidMove3: `${detail}\n`,
       error: error.red,
-      start: start.cyan,
+      start: start.green,
       invalidMove1: invalidMove1.green,
       invalidMove2: invalidMove2.green,
       moveHere: detail,
@@ -315,6 +315,7 @@ function main() {
       gameState.debug == false
         ? (gameState.debug = true)
         : (gameState.debug = false);
+      console.clear();
       handleOutput('debug');
     } else if (command[0] == 'exit') {
       console.clear();
