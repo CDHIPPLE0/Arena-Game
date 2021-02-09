@@ -1,3 +1,4 @@
+//imports of tiles and messages
 const outputMessage = require('./assets/messages');
 const {
   error,
@@ -6,66 +7,91 @@ const {
   invalidMove2,
 } = outputMessage.outputMessage;
 const tiles = require('./assets/tiles');
-const { x, o, u, v, w, X, E } = tiles.tiles;
+const { x, o, u, v, w, H, E, U, g } = tiles.tiles;
 
 function main() {
   let gameState = {
     time: 0,
     posY: 5,
     posX: 2,
-    inventory: [],
+    inventory: {},
   };
 
   world = (command) => {
     gameState.time++;
     const map = [
       [x, x, x, x, x],
-      [x, x, x, E, x],
-      [x, x, x, X, x],
+      [x, U, x, E, x],
+      [x, U, x, H, x],
       [x, v, u, w, x],
       [x, o, u, o, x],
-      [x, u, u, v, x],
-      [x, x, x, x, x],
+      [x, U, u, v, x],
+      [x, x, g, x, x],
     ];
-    let colCheck = (command) => {
+    let colCheck = (method, command) => {
       let initY = gameState.posY;
       let initX = gameState.posX;
-      switch (command) {
-        case 'posY--':
-          initY--;
-          break;
-        case 'posX++':
-          initX++;
-          break;
-        case 'posY++':
-          initY++;
-          break;
-        case 'posX--':
-          initX--;
-          break;
-        default:
-          handleOutput('error');
-          break;
-      }
-      if (map[initY][initX].canPass) {
-        gameState.posY = initY;
-        gameState.posX = initX;
-      } else {
-        handleOutput('invalidMove3', map[initY][initX].message);
+      if (method === 'look') {
+        switch (command) {
+          case 'posY--':
+            let yM = initY - 1;
+            handleOutput('fromObject', `You see ${map[yM][initX].lookRes}`);
+            break;
+          case 'posX++':
+            let xP = initX + 1;
+            handleOutput('fromObject', `You see ${map[initY][xP].lookRes}`);
+            break;
+          case 'posY++':
+            let yP = initY + 1;
+            handleOutput('fromObject', `You see ${map[yP][initX].lookRes}`);
+            break;
+          case 'posX--':
+            let xM = initX - 1;
+            handleOutput('fromObject', `You see ${map[initY][xM].lookRes}`);
+            break;
+          default:
+            handleOutput('error');
+            break;
+        }
+      } else if (method === 'walk') {
+        switch (command) {
+          case 'posY--':
+            initY--;
+            break;
+          case 'posX++':
+            initX++;
+            break;
+          case 'posY++':
+            initY++;
+            break;
+          case 'posX--':
+            initX--;
+            break;
+          default:
+            handleOutput('error');
+            break;
+        }
+
+        if (map[initY][initX].canPass) {
+          gameState.posY = initY;
+          gameState.posX = initX;
+        } else {
+          handleOutput('invalidMove3', map[initY][initX].message);
+        }
       }
     };
     let secCommands = {
-      north: () => {
-        colCheck('posY--');
+      north: (method) => {
+        colCheck(method, 'posY--');
       },
-      east: () => {
-        colCheck('posX++');
+      east: (method) => {
+        colCheck(method, 'posX++');
       },
-      south: () => {
-        colCheck('posY++');
+      south: (method) => {
+        colCheck(method, 'posY++');
       },
-      west: () => {
-        colCheck('posX--');
+      west: (method) => {
+        colCheck(method, 'posX--');
       },
     };
     let statement = [];
@@ -78,7 +104,10 @@ function main() {
       handleOutput('invalidMove2');
     } else {
       if (statement[0] == 'walk') {
-        secCommands[statement[1]]();
+        secCommands[statement[1]]('walk');
+      }
+      if (statement[0] == 'look') {
+        secCommands[statement[1]]('look');
       }
     }
     handleOutput('fromObject', map[gameState.posY][gameState.posX].message);
@@ -89,6 +118,7 @@ function main() {
     statement = [];
     let command = {
       walk: false,
+      look: false,
       north: false,
       east: false,
       south: false,
