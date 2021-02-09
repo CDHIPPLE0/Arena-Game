@@ -47,29 +47,28 @@ function main() {
       let initX = gameState.posX;
       //These are method lookups for the look command
       const look = {
-        //in this example 'posY--' equates to the direction the payer wants to 'look' relative to their X/Y coordinate.
+        //in this example 'posY--' equates to the direction the player wants to 'look' relative to their X/Y coordinate.
         'posY--': () => {
           //GameState is set to "North" b/c looking in the direction of player position - Y == a tile to their north.
           gameState.facing = 'north';
           //yM == the new Y coordinate to return data from
           let yM = initY - 1;
-          let object;
-          //Checks to see if there is an "object" within the tile at the coordinates to see when looking, if not the description of the tile (lookRes) is returned.
-          object = map[yM][initX].objects[0];
-          let objectDesc;
-          if (object != undefined) {
-            //if the object
-            for (const [key, value] of Object.entries(object)) {
+          let items;
+          //Checks to see if there is an "item" within the tile at the coordinates to see when looking, if not the description of the tile (lookRes) is returned.
+          items = map[yM][initX].items[0];
+          let itemDesc;
+          if (items != undefined) {
+            for (const [key, value] of Object.entries(items)) {
               if (value !== undefined) {
-                //checks to see if the object is visible from a distance.
+                //checks to see if the item is visible from a distance.
                 !!value.canSeeFromDistance
-                  ? (objectDesc = value.lookRes)
-                  : (objectDesc = 'something that catches your eye');
+                  ? (itemDesc = value.message)
+                  : (itemDesc = 'something that catches your eye');
               }
             }
             handleOutput(
               'fromObject',
-              `You see ${map[initY][xM].lookRes.yellow} You also see ${objectDesc.white}`
+              `You see ${map[yM][initX].lookRes.yellow} You also see ${itemDesc.white}`
             );
           } else {
             handleOutput(
@@ -81,20 +80,20 @@ function main() {
         'posX++': () => {
           gameState.facing = 'east';
           let xP = initX + 1;
-          let object;
-          object = map[initY][xP].objects[0];
-          let objectDesc;
-          if (object != undefined) {
-            for (const [key, value] of Object.entries(object)) {
+          let items;
+          items = map[initY][xP].items[0];
+          let itemDesc;
+          if (items != undefined) {
+            for (const [key, value] of Object.entries(items)) {
               if (value !== undefined) {
                 !!value.canSeeFromDistance
-                  ? (objectDesc = value.lookRes)
-                  : (objectDesc = 'something that catches your eye');
+                  ? (itemDesc = value.message)
+                  : (itemDesc = 'something that catches your eye');
               }
             }
             handleOutput(
               'fromObject',
-              `You see ${map[initY][xM].lookRes.yellow} You also see ${objectDesc.white}`
+              `You see ${map[initY][xP].lookRes.yellow} You also see ${itemDesc.white}`
             );
           } else {
             handleOutput(
@@ -106,20 +105,20 @@ function main() {
         'posY++': () => {
           gameState.facing = 'south';
           let yP = initY + 1;
-          let object;
-          object = map[yP][initX].objects[0];
-          let objectDesc;
-          if (object != undefined) {
-            for (const [key, value] of Object.entries(object)) {
+          let items;
+          items = map[yP][initX].items[0];
+          let itemDesc;
+          if (items != undefined) {
+            for (const [key, value] of Object.entries(items)) {
               if (value !== undefined) {
                 !!value.canSeeFromDistance
-                  ? (objectDesc = value.lookRes)
-                  : (objectDesc = 'something that catches your eye');
+                  ? (itemDesc = value.message)
+                  : (itemDesc = 'something that catches your eye');
               }
             }
             handleOutput(
               'fromObject',
-              `You see ${map[initY][xM].lookRes.yellow} You also see ${objectDesc.white}`
+              `You see ${map[yP][initX].lookRes.yellow} You also see ${itemDesc.white}`
             );
           } else {
             handleOutput(
@@ -131,20 +130,20 @@ function main() {
         'posX--': () => {
           gameState.facing = 'west';
           let xM = initX - 1;
-          let object;
-          object = map[initY][xM].objects[0];
-          let objectDesc;
-          if (object != undefined) {
-            for (const [key, value] of Object.entries(object)) {
+          let items;
+          items = map[initY][xM].items[0];
+          let itemDesc;
+          if (items != undefined) {
+            for (const [key, value] of Object.entries(items)) {
               if (value !== undefined) {
                 !!value.canSeeFromDistance
-                  ? (objectDesc = value.lookRes)
-                  : (objectDesc = 'something that catches your eye');
+                  ? (itemDesc = value.message)
+                  : (itemDesc = 'something that catches your eye');
               }
             }
             handleOutput(
               'fromObject',
-              `You see ${map[initY][xM].lookRes.yellow} You also see ${objectDesc.white}`
+              `You see ${map[initY][xM].lookRes.yellow} You also see ${itemDesc.white}`
             );
           } else {
             handleOutput(
@@ -154,20 +153,19 @@ function main() {
           }
         },
         here: () => {
-          let object;
-          object = map[initY][initX].objects[0];
-          let objectDesc;
-          if (object != undefined) {
-            for (const [key, value] of Object.entries(object)) {
+          items = map[initY][initX].items[0];
+          let itemDesc;
+          if (items != undefined) {
+            for (const [key, value] of Object.entries(items)) {
               if (value !== undefined) {
-                objectDesc = value.lookRes;
+                itemDesc = value.message;
                 //If an object is found while looking "here", it then becomes visible from a distance.
                 value.canSeeFromDistance = true;
               }
             }
             handleOutput(
               'fromObject',
-              `A careful search of the area reveals ${map[initY][initX].lookRes.yellow} and ${objectDesc.white}`
+              `A careful search of the area reveals ${map[initY][initX].lookRes.yellow} and ${itemDesc.white}`
             );
           } else {
             handleOutput(
