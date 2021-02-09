@@ -46,12 +46,14 @@ function main() {
           if (object != undefined) {
             for (const [key, value] of Object.entries(object)) {
               if (value !== undefined) {
-                objectDesc = value.message;
+                !!value.canSeeFromDistance
+                  ? (objectDesc = value.lookRes)
+                  : (objectDesc = 'something that catches your eye');
               }
             }
             handleOutput(
               'fromObject',
-              `You see ${map[yM][initX].lookRes.yellow} You also see what appears to be ${objectDesc.white}`
+              `You see ${map[initY][xM].lookRes.yellow} You also see ${objectDesc.white}`
             );
           } else {
             handleOutput(
@@ -69,12 +71,14 @@ function main() {
           if (object != undefined) {
             for (const [key, value] of Object.entries(object)) {
               if (value !== undefined) {
-                objectDesc = value.message;
+                !!value.canSeeFromDistance
+                  ? (objectDesc = value.lookRes)
+                  : (objectDesc = 'something that catches your eye');
               }
             }
             handleOutput(
               'fromObject',
-              `You see ${map[initY][xP].lookRes.yellow} You also see what appears to be ${objectDesc.white}`
+              `You see ${map[initY][xM].lookRes.yellow} You also see ${objectDesc.white}`
             );
           } else {
             handleOutput(
@@ -92,12 +96,14 @@ function main() {
           if (object != undefined) {
             for (const [key, value] of Object.entries(object)) {
               if (value !== undefined) {
-                objectDesc = value.message;
+                !!value.canSeeFromDistance
+                  ? (objectDesc = value.lookRes)
+                  : (objectDesc = 'something that catches your eye');
               }
             }
             handleOutput(
               'fromObject',
-              `You see ${map[yP][initX].lookRes.yellow} You also see what appears to be ${objectDesc.white}`
+              `You see ${map[initY][xM].lookRes.yellow} You also see ${objectDesc.white}`
             );
           } else {
             handleOutput(
@@ -115,12 +121,14 @@ function main() {
           if (object != undefined) {
             for (const [key, value] of Object.entries(object)) {
               if (value !== undefined) {
-                objectDesc = value.message;
+                !!value.canSeeFromDistance
+                  ? (objectDesc = value.lookRes)
+                  : (objectDesc = 'something that catches your eye');
               }
             }
             handleOutput(
               'fromObject',
-              `You see ${map[initY][xM].lookRes.yellow} You also see what appears to be ${objectDesc.white}`
+              `You see ${map[initY][xM].lookRes.yellow} You also see ${objectDesc.white}`
             );
           } else {
             handleOutput(
@@ -136,7 +144,8 @@ function main() {
           if (object != undefined) {
             for (const [key, value] of Object.entries(object)) {
               if (value !== undefined) {
-                objectDesc = value.message;
+                objectDesc = value.lookRes;
+                value.canSeeFromDistance = true;
               }
             }
             handleOutput(

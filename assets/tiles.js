@@ -15,7 +15,15 @@ let tiles = {
     lookRes: 'a pillar',
     canPass: false,
     message: 'There is a pillar here blocking your path.',
-    objects: [],
+    objects: [
+      {
+        scratches: {
+          message: 'scratches in the stone',
+          canTake: false,
+          canSeeFromDistance: true,
+        },
+      },
+    ],
   },
   U: {
     lookRes: 'a rough dirt floor',
@@ -33,7 +41,15 @@ let tiles = {
     lookRes: 'a blood stained dirt floor',
     canPass: true,
     message: 'There are black stains scattered about the floor.',
-    objects: [{ key: { message: 'a small silver key', canTake: true } }],
+    objects: [
+      {
+        key: {
+          message: 'a small silver key',
+          canTake: true,
+          canSeeFromDistance: false,
+        },
+      },
+    ],
   },
   w: {
     lookRes: 'a dirt floor',
