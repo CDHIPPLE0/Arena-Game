@@ -6,6 +6,7 @@ const {
   start,
   invalidMove1,
   invalidMove2,
+  debug,
 } = outputMessage.outputMessage;
 const tiles = require('./assets/tiles');
 const { x, o, u, v, w, G, E, U, g } = tiles.tiles;
@@ -16,7 +17,9 @@ function main() {
     time: 0,
     posY: 5,
     posX: 2,
+    facing: 'north',
     inventory: {},
+    debug: false,
   };
 
   world = (command) => {
@@ -35,52 +38,135 @@ function main() {
       let initX = gameState.posX;
       const look = {
         'posY--': () => {
+          gameState.facing = 'north';
           let yM = initY - 1;
-          handleOutput(
-            'fromObject',
-            `You see ${map[yM][initX].lookRes.yellow}`
-          );
+          let object;
+          object = map[yM][initX].objects[0];
+          let objectDesc;
+          if (object != undefined) {
+            for (const [key, value] of Object.entries(object)) {
+              if (value !== undefined) {
+                objectDesc = value.message;
+              }
+            }
+            handleOutput(
+              'fromObject',
+              `You see ${map[yM][initX].lookRes.yellow} You also see what appears to be ${objectDesc.white}`
+            );
+          } else {
+            handleOutput(
+              'fromObject',
+              `You see ${map[yM][initX].lookRes.yellow}`
+            );
+          }
         },
         'posX++': () => {
+          gameState.facing = 'east';
           let xP = initX + 1;
-          handleOutput(
-            'fromObject',
-            `You see ${map[initY][xP].lookRes.yellow}`
-          );
+          let object;
+          object = map[initY][xP].objects[0];
+          let objectDesc;
+          if (object != undefined) {
+            for (const [key, value] of Object.entries(object)) {
+              if (value !== undefined) {
+                objectDesc = value.message;
+              }
+            }
+            handleOutput(
+              'fromObject',
+              `You see ${map[initY][xP].lookRes.yellow} You also see what appears to be ${objectDesc.white}`
+            );
+          } else {
+            handleOutput(
+              'fromObject',
+              `You see ${map[initY][xP].lookRes.yellow}`
+            );
+          }
         },
         'posY++': () => {
+          gameState.facing = 'south';
           let yP = initY + 1;
-          handleOutput(
-            'fromObject',
-            `You see ${map[yP][initX].lookRes.yellow}`
-          );
+          let object;
+          object = map[yP][initX].objects[0];
+          let objectDesc;
+          if (object != undefined) {
+            for (const [key, value] of Object.entries(object)) {
+              if (value !== undefined) {
+                objectDesc = value.message;
+              }
+            }
+            handleOutput(
+              'fromObject',
+              `You see ${map[yP][initX].lookRes.yellow} You also see what appears to be ${objectDesc.white}`
+            );
+          } else {
+            handleOutput(
+              'fromObject',
+              `You see ${map[yP][initX].lookRes.yellow}`
+            );
+          }
         },
         'posX--': () => {
+          gameState.facing = 'west';
           let xM = initX - 1;
-          handleOutput(
-            'fromObject',
-            `You see ${map[initY][xM].lookRes.yellow}`
-          );
+          let object;
+          object = map[initY][xM].objects[0];
+          let objectDesc;
+          if (object != undefined) {
+            for (const [key, value] of Object.entries(object)) {
+              if (value !== undefined) {
+                objectDesc = value.message;
+              }
+            }
+            handleOutput(
+              'fromObject',
+              `You see ${map[initY][xM].lookRes.yellow} You also see what appears to be ${objectDesc.white}`
+            );
+          } else {
+            handleOutput(
+              'fromObject',
+              `You see ${map[initY][xM].lookRes.yellow}`
+            );
+          }
         },
         here: () => {
-          handleOutput(
-            'fromObject',
-            `You see ${map[initY][initX].lookRes.yellow}`
-          );
+          let object;
+          object = map[initY][initX].objects[0];
+          let objectDesc;
+          if (object != undefined) {
+            for (const [key, value] of Object.entries(object)) {
+              if (value !== undefined) {
+                objectDesc = value.message;
+              }
+            }
+            handleOutput(
+              'fromObject',
+              `A careful search of the area reveals ${map[initY][initX].lookRes.yellow} and ${objectDesc.white}`
+            );
+          } else {
+            handleOutput(
+              'fromObject',
+              `A careful search of the area reveals ${map[initY][initX].lookRes.yellow}`
+            );
+          }
         },
       };
 
       const walk = {
         'posY--': () => {
+          gameState.facing = 'north';
           initY--;
         },
         'posX++': () => {
+          gameState.facing = 'east';
           initX++;
         },
         'posY++': () => {
+          gameState.facing = 'south';
           initY++;
         },
         'posX--': () => {
+          gameState.facing = 'west';
           initX--;
         },
         here: () => {
@@ -90,19 +176,14 @@ function main() {
 
       // const take = {
       //   'posY--': () => {
-      //     initY--;
       //   },
       //   'posX++': () => {
-      //     initX++;
       //   },
       //   'posY++': () => {
-      //     initY++;
       //   },
       //   'posX--': () => {
-      //     initX--;
       //   },
       //   here: () => {
-      //     handleOutput('moveHere', 'You shuffle around in place');
       //   },
       // };
 
@@ -112,17 +193,16 @@ function main() {
       } else if (method === 'walk') {
         walk[command]();
       }
-      // } else if (method === 'take') {
-      //   map[initY][initX].objects;
-      //   take[command]();
-      // }
-
-      if (map[initY][initX].canPass && command !== 'here') {
-        gameState.time++;
-        gameState.posY = initY;
-        gameState.posX = initX;
+      if (command == 'here') {
+        return 0;
       } else {
-        handleOutput('invalidMove3', map[initY][initX].message.cyan);
+        if (map[initY][initX].canPass) {
+          gameState.time++;
+          gameState.posY = initY;
+          gameState.posX = initX;
+        } else {
+          handleOutput('invalidMove3', map[initY][initX].message.cyan);
+        }
       }
     };
 
@@ -159,7 +239,10 @@ function main() {
         secCommands[statement[1]]('look');
       }
     }
-    handleOutput('fromObject', map[gameState.posY][gameState.posX].message.dim);
+    handleOutput(
+      'fromObject',
+      map[gameState.posY][gameState.posX].message.green.italic
+    );
   };
 
   handleInput = (data) => {
@@ -190,6 +273,21 @@ function main() {
     } else {
       handleOutput('invalidMove1');
     }
+    if (gameState.debug == true) {
+      console.log('\n');
+      console.log(
+        'time:',
+        gameState.time.toString().red,
+        'facing:',
+        gameState.facing.toString().red
+      );
+      console.log(
+        'posY:',
+        gameState.posY.toString().red,
+        'posX:',
+        gameState.posX.toString().red
+      );
+    }
   };
 
   handleOutput = (message, detail) => {
@@ -199,9 +297,10 @@ function main() {
       invalidMove3: `${detail}\n`,
       error: error.red,
       start: start.yellow,
-      invalidMove1: invalidMove1,
-      invalidMove2: invalidMove2,
+      invalidMove1: invalidMove1.green,
+      invalidMove2: invalidMove2.green,
       moveHere: detail,
+      debug: debug.red,
     };
     output = outputMessage[message] + '\n';
     gameState.outPut = output;
@@ -213,7 +312,12 @@ function main() {
   }
   process.stdin.on('data', (data) => {
     let command = data.toString().trim().split(' ');
-    if (command[0] == 'exit') {
+    if (command[0] == 'debug') {
+      gameState.debug == false
+        ? (gameState.debug = true)
+        : (gameState.debug = false);
+      handleOutput('debug');
+    } else if (command[0] == 'exit') {
       console.clear();
       process.exit(0);
     } else {

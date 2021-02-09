@@ -33,7 +33,7 @@ let tiles = {
     lookRes: 'a blood stained dirt floor',
     canPass: true,
     message: 'There are black stains scattered about the floor.',
-    objects: [],
+    objects: [{ key: { message: 'a small silver key', canTake: true } }],
   },
   w: {
     lookRes: 'a dirt floor',
@@ -47,6 +47,9 @@ let tiles = {
     message:
       'There is a gate before you, it is fitted with a large brass lock.',
     objects: [],
+    canOpen: {
+      key: true,
+    },
   },
   E: {
     lookRes: 'an exit to the outdoors',
