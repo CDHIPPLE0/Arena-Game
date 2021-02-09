@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// --PROGRAM FLOW--    MAIN => stdIn => handleInput => world => colCheck => handleOutput => MAIN
+// --PROGRAM FLOW-- MAIN => stdIn => handleInput => world => colCheck => handleOutput => MAIN
 
 //messages for the handleOutput function
 const outputMessage = require('./assets/messages');
@@ -214,6 +214,7 @@ function main() {
       //   here: () => {
       //   },
       // };
+
       //these check the method passed in to world by the handleInput command.
       if (method === 'look') {
         //calls look, and runs the method associated with the command passed in.
