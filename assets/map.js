@@ -1,5 +1,5 @@
 const tiles = require('./tiles');
-const { x, o, u, v, w, G, E, U, g } = tiles.tiles;
+
 //each map letter represents a tile object as imported above on a coordinate ^
 const map = [
   ['x', 'x', 'x', 'x', 'x'],
@@ -10,16 +10,23 @@ const map = [
   ['x', 'U', 'u', 'U', 'x'],
   ['x', 'x', 'g', 'x', 'x'],
 ];
-let yCount = map.length;
-let xCount = map[0].length;
-let itY = 0;
-let itX = 0;
-while (itY < yCount) {
-  while (itX < xCount) {
+
+let itY = (itX = 0);
+while (itY < map.length) {
+  while (itX < map[0].length) {
+    let refElement = tiles.tiles(map[itY][itX].toString());
+    let newElement = {
+      lookRes: refElement.lookRes,
+      canPass: refElement.canPass,
+      message: refElement.message,
+      items: [],
+      canOpen: {},
+    };
+    map[itY][itX] = newElement;
     itX++;
-    console.log(map[itY][itX]);
   }
-  iX = 0;
+  console.log(map);
+  itX = 0;
   itY++;
 }
 

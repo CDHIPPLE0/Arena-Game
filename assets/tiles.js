@@ -1,7 +1,7 @@
 //Tile objects for the map
 //____________NOTE TO SELF____ separate the items and add to tiles by reference.
 
-exports.tiles = function Tiles(char) {
+let tiles = function tiles(char) {
   let tiles = {
     g: {
       //output if you look at the object
@@ -23,19 +23,7 @@ exports.tiles = function Tiles(char) {
       lookRes: 'a pillar',
       canPass: false,
       message: 'There is a pillar here blocking your path.',
-      items: [
-        //the "item" here is scratches on the pillar.
-        {
-          scratches: {
-            //message is output when looking at an item from a tile away and canSeeFromDistance = true or you are in the tile and look here.
-            message: 'scratches in the stone',
-            //Can add to inventory
-            canTake: false,
-            //If this is false, once you see it by looking "here" this is set to true
-            canSeeFromDistance: true,
-          },
-        },
-      ],
+      items: [],
       canOpen: {},
     },
     U: {
@@ -56,15 +44,7 @@ exports.tiles = function Tiles(char) {
       lookRes: 'a blood stained dirt floor',
       canPass: true,
       message: 'There are black stains scattered about the floor.',
-      items: [
-        {
-          key: {
-            message: 'a small silver key',
-            canTake: true,
-            canSeeFromDistance: false,
-          },
-        },
-      ],
+      items: [],
       canOpen: {},
     },
     w: {
@@ -81,9 +61,7 @@ exports.tiles = function Tiles(char) {
         'There is a gate before you, it is fitted with a large brass lock.',
       items: [],
       //canOpen checks for the key to set canPass to true, message is updated to "you are in an open passage"
-      canOpen: {
-        key: true,
-      },
+      canOpen: {},
     },
     E: {
       lookRes: 'an exit to the outdoors',
@@ -93,6 +71,9 @@ exports.tiles = function Tiles(char) {
       canOpen: {},
     },
   };
+
   let tile = tiles[char];
   return tile;
 };
+
+exports.tiles = tiles;
