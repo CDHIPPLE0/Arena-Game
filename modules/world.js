@@ -1,13 +1,5 @@
 let { map } = require('../assets/map');
-let {
-  gameState,
-  time,
-  posY,
-  posX,
-  facing,
-  inventory,
-  debugToggle,
-} = require('./gameState');
+let { gameState } = require('./gameState');
 
 world = (command) => {
   //Takes in player movement or action commands and checks for collisions, reveals information, facilitates coordinate object interaction

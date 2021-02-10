@@ -1,4 +1,5 @@
 const tiles = require('./tiles');
+const setItemMapPos = require('../modules/setItemMapPos');
 
 //each map letter represents a tile object as imported above on a coordinate ^
 const map = [
@@ -23,6 +24,9 @@ while (itY < map.length) {
       canOpen: {},
     };
     map[itY][itX] = newElement;
+    let coordinates = itY.toString() + itX.toString();
+    let getItemForTile = setItemMapPos.setItemMapPos(coordinates);
+    map[itY][itX].items.push({ getItemForTile });
     itX++;
   }
   itX = 0;
