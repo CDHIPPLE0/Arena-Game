@@ -124,6 +124,7 @@ world = (command) => {
         if (items != undefined) {
           for (const [key, value] of Object.entries(items)) {
             if (value !== undefined) {
+              console.log(key, value);
               itemDesc = value.message;
               //If an object is found while looking "here", it then becomes visible from a distance.
               value.canSeeFromDistance = true;

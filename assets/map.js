@@ -26,7 +26,10 @@ while (itY < map.length) {
     map[itY][itX] = newElement;
     let coordinates = itY.toString() + itX.toString();
     let getItemForTile = setItemMapPos.setItemMapPos(coordinates);
-    map[itY][itX].items.push({ getItemForTile });
+    if (!!getItemForTile) {
+      map[itY][itX].items.push({ getItemForTile });
+    }
+    console.log(map[itY][itX].items);
     itX++;
   }
   itX = 0;
