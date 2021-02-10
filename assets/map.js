@@ -1,5 +1,5 @@
 const tiles = require('./tiles');
-const setItemMapPos = require('../modules/setItemMapPos');
+const setItemMapPos = require('./setItemMapPos');
 
 //each map letter represents a tile object as imported above on a coordinate ^
 const map = [

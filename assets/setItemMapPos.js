@@ -1,5 +1,3 @@
-const itemsMisc = require('../assets/itemsMisc');
-
 let setItemMapPos = function setItemMapPos(key) {
   let itemSet = {
     31: {
@@ -7,8 +5,17 @@ let setItemMapPos = function setItemMapPos(key) {
       canTake: true,
       canSeeFromDistance: false,
     },
+    41: {
+      message: 'deep scratches on the pillar',
+      canTake: false,
+      canSeeFromDistance: true,
+    },
+    01: {
+      message: 'a strange stain on the wall',
+      canTake: false,
+      canSeeFromDistance: true,
+    },
   };
-  let search = itemsMisc.itemsMisc(key);
 
   return itemSet[key];
 };

@@ -32,11 +32,8 @@ objectManipulation = (command) => {
   if (statement.length < 2) {
     handleOutput('invalidMove2');
   } else {
-    if (statement[0] == 'walk') {
-      secCommands[statement[1]]('walk');
-    }
-    if (statement[0] == 'look') {
-      secCommands[statement[1]]('look');
+    if (statement[0] == 'take') {
+      secCommands[statement[1]]('take');
     }
   }
   handleOutput(

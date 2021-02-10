@@ -1,5 +1,6 @@
 //This sends the commands object as a statement to the movement function
 let { gameState } = require('./gameState');
+const objectManipulation = require('./objectManipulation');
 
 exports.handleInput = handleInput = (data) => {
   statement = [];
@@ -44,7 +45,7 @@ exports.handleInput = handleInput = (data) => {
   let directionCount = !!north + !!east + !!south + !!west + !!here + !!self;
   if (commandCount <= 1 && directionCount <= 1) {
     if (objectManipulation > 0) {
-      objectManipulation(command);
+      objectManipulation.objectManipulation(command);
     } else movement(command);
   } else {
     handleOutput('invalidMove1');

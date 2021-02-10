@@ -28,7 +28,7 @@ movement = (command) => {
                 : (itemDesc = 'something that catches your eye');
             }
           }
-          let secMess = 'You also see';
+          let secMess = 'you also see';
           handleOutput(
             'fromObject',
             `You see ${map[yM][initX].lookRes.yellow} ${secMess.green} ${itemDesc.white}`
@@ -54,7 +54,7 @@ movement = (command) => {
                 : (itemDesc = 'something that catches your eye');
             }
           }
-          let secMess = 'You also see';
+          let secMess = 'you also see';
           handleOutput(
             'fromObject',
             `You see ${map[initY][xP].lookRes.yellow} ${secMess.green}  ${itemDesc.white}`
@@ -80,7 +80,7 @@ movement = (command) => {
                 : (itemDesc = 'something that catches your eye');
             }
           }
-          let secMess = 'You also see';
+          let secMess = 'you also see';
           handleOutput(
             'fromObject',
             `You see ${map[yP][initX].lookRes.yellow} ${secMess.green}  ${itemDesc.white}`
@@ -106,7 +106,7 @@ movement = (command) => {
                 : (itemDesc = 'something that catches your eye');
             }
           }
-          let secMess = 'You also see';
+          let secMess = 'you also see';
           handleOutput(
             'fromObject',
             `You see ${map[initY][xM].lookRes.yellow} ${secMess.green}  ${itemDesc.white}`
