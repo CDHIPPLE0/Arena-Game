@@ -23,8 +23,7 @@ movement = (command) => {
         } else if (command == 'here') {
           refPos = map[initY][initX];
         }
-        let items;
-        items = refPos;
+        items = refPos.items[0];
         let itemDesc;
         if (items != undefined) {
           for (const [key, value] of Object.entries(items)) {
