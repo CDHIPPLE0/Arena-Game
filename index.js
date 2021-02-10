@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-// --PROGRAM FLOW-- MAIN => stdIn => handleInput => world => colCheck => handleOutput => MAIN
+// --PROGRAM FLOW-- MAIN => stdIn => handleInput => movement => colCheck => handleOutput => MAIN
 let { gameState } = require('./modules/gameState');
 const stdIn = require('./modules/stdIn');
 const stdOut = require('./modules/stdOut');
-const world = require('./modules/world');
+const objectManipulation = require('./modules/objectManipulation');
+const movement = require('./modules/movement');
 const handleInput = require('./modules/handleInput');
 //colors for console
 var colors = require('colors');

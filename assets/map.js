@@ -29,7 +29,7 @@ while (itY < map.length) {
     if (!!getItemForTile) {
       map[itY][itX].items.push({ getItemForTile });
     }
-    console.log(map[itY][itX].items);
+
     itX++;
   }
   itX = 0;

@@ -1,7 +1,7 @@
 let { map } = require('../assets/map');
 let { gameState } = require('./gameState');
 
-world = (command) => {
+movement = (command) => {
   //Takes in player movement or action commands and checks for collisions, reveals information, facilitates coordinate object interaction
   let colCheck = (method, command) => {
     //Current location according to gameState
@@ -124,7 +124,6 @@ world = (command) => {
         if (items != undefined) {
           for (const [key, value] of Object.entries(items)) {
             if (value !== undefined) {
-              console.log(key, value);
               itemDesc = value.message;
               //If an object is found while looking "here", it then becomes visible from a distance.
               value.canSeeFromDistance = true;
@@ -167,21 +166,7 @@ world = (command) => {
         handleOutput('moveHere', 'You shuffle around in place');
       },
     };
-
-    // const take = {
-    //   'posY--': () => {
-    //   },
-    //   'posX++': () => {
-    //   },
-    //   'posY++': () => {
-    //   },
-    //   'posX--': () => {
-    //   },
-    //   here: () => {
-    //   },
-    // };
-
-    //these check the method passed in to world by the handleInput command.
+    //these check the method passed in to movement by the handleInput command.
     if (method === 'look') {
       //calls look, and runs the method associated with the command passed in.
       look[command]();
@@ -203,7 +188,7 @@ world = (command) => {
       }
     }
   };
-  //This portion of the world function runs prior to the colCheck function and passes player input to seCommand methods, which call colCheck.
+  //This portion of the movement function runs prior to the colCheck function and passes player input to seCommand methods, which call colCheck.
   let secCommands = {
     //In the case that the direction command from the player == north this method calls colCheck, and passes in the "method" which could be walk or look etc; and the direction inc/dec.
     north: (method) => {
@@ -245,4 +230,4 @@ world = (command) => {
     map[gameState.posY][gameState.posX].message.green.italic
   );
 };
-exports.world = world;
+exports.movement = movement;
