@@ -25,7 +25,6 @@ while (itY < map.length) {
     map[itY][itX] = newElement;
     itX++;
   }
-  console.log(map);
   itX = 0;
   itY++;
 }

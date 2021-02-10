@@ -8,21 +8,11 @@ const {
   debug,
 } = outputMessage.outputMessage;
 
-let {
-  gameState,
-  time,
-  posY,
-  posX,
-  facing,
-  inventory,
-  debugToggle,
-} = require('./gameState');
-
 exports.stdOut = handleOutput = (message, detail) => {
   let output;
   //these messages below are derived from the imported messages module.
   let outputMessage = {
-    fromObject: detail,
+    fromObject: `${detail}`.green,
     invalidMove3: `${detail}\n`,
     error: error.red,
     start: start.green,

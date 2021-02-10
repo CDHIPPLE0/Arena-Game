@@ -1,13 +1,5 @@
 //This sends the commands object as a statement to the world function
-let {
-  gameState,
-  time,
-  posY,
-  posX,
-  facing,
-  inventory,
-  debugToggle,
-} = require('./gameState');
+let { gameState } = require('./gameState');
 
 exports.handleInput = handleInput = (data) => {
   statement = [];

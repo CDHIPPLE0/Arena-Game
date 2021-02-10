@@ -36,9 +36,10 @@ world = (command) => {
                 : (itemDesc = 'something that catches your eye');
             }
           }
+          let secMess = 'You also see';
           handleOutput(
             'fromObject',
-            `You see ${map[yM][initX].lookRes.yellow} You also see ${itemDesc.white}`
+            `You see ${map[yM][initX].lookRes.yellow} ${secMess.green} ${itemDesc.white}`
           );
         } else {
           handleOutput(
@@ -61,9 +62,10 @@ world = (command) => {
                 : (itemDesc = 'something that catches your eye');
             }
           }
+          let secMess = 'You also see';
           handleOutput(
             'fromObject',
-            `You see ${map[initY][xP].lookRes.yellow} You also see ${itemDesc.white}`
+            `You see ${map[initY][xP].lookRes.yellow} ${secMess.green}  ${itemDesc.white}`
           );
         } else {
           handleOutput(
@@ -86,9 +88,10 @@ world = (command) => {
                 : (itemDesc = 'something that catches your eye');
             }
           }
+          let secMess = 'You also see';
           handleOutput(
             'fromObject',
-            `You see ${map[yP][initX].lookRes.yellow} You also see ${itemDesc.white}`
+            `You see ${map[yP][initX].lookRes.yellow} ${secMess.green}  ${itemDesc.white}`
           );
         } else {
           handleOutput(
@@ -111,9 +114,10 @@ world = (command) => {
                 : (itemDesc = 'something that catches your eye');
             }
           }
+          let secMess = 'You also see';
           handleOutput(
             'fromObject',
-            `You see ${map[initY][xM].lookRes.yellow} You also see ${itemDesc.white}`
+            `You see ${map[initY][xM].lookRes.yellow} ${secMess.green}  ${itemDesc.white}`
           );
         } else {
           handleOutput(
@@ -133,9 +137,10 @@ world = (command) => {
               value.canSeeFromDistance = true;
             }
           }
+          let secMess = 'and';
           handleOutput(
             'fromObject',
-            `A careful search of the area reveals ${map[initY][initX].lookRes.yellow} and ${itemDesc.white}`
+            `A careful search of the area reveals ${map[initY][initX].lookRes.yellow} ${secMess.green} ${itemDesc.white}`
           );
         } else {
           handleOutput(

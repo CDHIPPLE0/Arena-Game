@@ -1,13 +1,5 @@
 //This is the first function run in main, it takes in what is typed in the console
-let {
-  gameState,
-  time,
-  posY,
-  posX,
-  facing,
-  inventory,
-  debugToggle,
-} = require('../modules/gameState');
+let { gameState } = require('../modules/gameState');
 
 exports.stdIn = process.stdin.on('data', (data) => {
   let command = data.toString().trim().split(' ');
