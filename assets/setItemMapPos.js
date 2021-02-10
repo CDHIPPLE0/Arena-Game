@@ -10,7 +10,7 @@ let setItemMapPos = function setItemMapPos(key) {
       canTake: false,
       canSeeFromDistance: true,
     },
-    01: {
+    61: {
       message: 'a strange stain on the wall',
       canTake: false,
       canSeeFromDistance: true,

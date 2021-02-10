@@ -2,49 +2,29 @@ let { map } = require('../assets/map');
 let { gameState } = require('./gameState');
 
 movement = (command) => {
-  //Takes in player movement or action commands and checks for collisions, reveals information, facilitates coordinate object interaction
   let colCheck = (method, command) => {
-    //Current location according to gameState
     let initY = gameState.posY;
     let initX = gameState.posX;
-    //These are method lookups for the look command
-    const look = {
-      //in this example 'posY--' equates to the direction the player wants to 'look' relative to their X/Y coordinate.
-      'posY--': () => {
-        //GameState is set to "North" b/c looking in the direction of player position - Y == a tile to their north.
-        gameState.facing = 'north';
-        //yM == the new Y coordinate to return data from
-        let yM = initY - 1;
-        let items;
-        //Checks to see if there is an "item" within the tile at the coordinates to see when looking, if not the description of the tile (lookRes) is returned.
-        items = map[yM][initX].items[0];
-        let itemDesc;
-        if (items != undefined) {
-          for (const [key, value] of Object.entries(items)) {
-            if (value !== undefined) {
-              //checks to see if the item is visible from a distance.
-              !!value.canSeeFromDistance
-                ? (itemDesc = value.message)
-                : (itemDesc = 'something that catches your eye');
-            }
-          }
-          let secMess = 'you also see';
-          handleOutput(
-            'fromObject',
-            `You see ${map[yM][initX].lookRes.yellow} ${secMess.green} ${itemDesc.white}`
-          );
-        } else {
-          handleOutput(
-            'fromObject',
-            `You see ${map[yM][initX].lookRes.yellow}`
-          );
+
+    function look(command) {
+      if (command != 'here') {
+        if (command == 'posY--') {
+          refPos = map[initY - 1][initX];
+          gameState.facing = 'north';
+        } else if (command == 'posY++') {
+          refPos = map[initY + 1][initX];
+          gameState.facing = 'south';
+        } else if (command == 'posX--') {
+          refPos = map[initY][initX - 1];
+          gameState.facing = 'east';
+        } else if (command == 'posX++') {
+          refPos = map[initY][initX + 1];
+          gameState.facing = 'west';
+        } else if (command == 'here') {
+          refPos = map[initY][initX];
         }
-      },
-      'posX++': () => {
-        gameState.facing = 'east';
-        let xP = initX + 1;
         let items;
-        items = map[initY][xP].items[0];
+        items = refPos;
         let itemDesc;
         if (items != undefined) {
           for (const [key, value] of Object.entries(items)) {
@@ -57,68 +37,12 @@ movement = (command) => {
           let secMess = 'you also see';
           handleOutput(
             'fromObject',
-            `You see ${map[initY][xP].lookRes.yellow} ${secMess.green}  ${itemDesc.white}`
+            `You see ${refPos.lookRes.yellow} ${secMess.green} ${itemDesc.white}`
           );
         } else {
-          handleOutput(
-            'fromObject',
-            `You see ${map[initY][xP].lookRes.yellow}`
-          );
+          handleOutput('fromObject', `You see ${refPos.lookRes.yellow}`);
         }
-      },
-      'posY++': () => {
-        gameState.facing = 'south';
-        let yP = initY + 1;
-        let items;
-        items = map[yP][initX].items[0];
-        let itemDesc;
-        if (items != undefined) {
-          for (const [key, value] of Object.entries(items)) {
-            if (value !== undefined) {
-              !!value.canSeeFromDistance
-                ? (itemDesc = value.message)
-                : (itemDesc = 'something that catches your eye');
-            }
-          }
-          let secMess = 'you also see';
-          handleOutput(
-            'fromObject',
-            `You see ${map[yP][initX].lookRes.yellow} ${secMess.green}  ${itemDesc.white}`
-          );
-        } else {
-          handleOutput(
-            'fromObject',
-            `You see ${map[yP][initX].lookRes.yellow}`
-          );
-        }
-      },
-      'posX--': () => {
-        gameState.facing = 'west';
-        let xM = initX - 1;
-        let items;
-        items = map[initY][xM].items[0];
-        let itemDesc;
-        if (items != undefined) {
-          for (const [key, value] of Object.entries(items)) {
-            if (value !== undefined) {
-              !!value.canSeeFromDistance
-                ? (itemDesc = value.message)
-                : (itemDesc = 'something that catches your eye');
-            }
-          }
-          let secMess = 'you also see';
-          handleOutput(
-            'fromObject',
-            `You see ${map[initY][xM].lookRes.yellow} ${secMess.green}  ${itemDesc.white}`
-          );
-        } else {
-          handleOutput(
-            'fromObject',
-            `You see ${map[initY][xM].lookRes.yellow}`
-          );
-        }
-      },
-      here: () => {
+      } else {
         items = map[initY][initX].items[0];
         let itemDesc;
         if (items != undefined) {
@@ -140,8 +64,8 @@ movement = (command) => {
             `A careful search of the area reveals ${map[initY][initX].lookRes.yellow}`
           );
         }
-      },
-    };
+      }
+    }
     //These are method lookups for the walk command
     const walk = {
       'posY--': () => {
@@ -169,7 +93,7 @@ movement = (command) => {
     //these check the method passed in to movement by the handleInput command.
     if (method === 'look') {
       //calls look, and runs the method associated with the command passed in.
-      look[command]();
+      look(command);
     } else if (method === 'walk') {
       walk[command]();
     }
