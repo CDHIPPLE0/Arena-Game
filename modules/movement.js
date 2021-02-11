@@ -36,13 +36,13 @@ movement = (command, method) => {
       gameState.facing = 'south';
     } else if (command == 'east') {
       if (method == 'look') {
-        refPos = map[initY][initX - 1];
-      } else initX--;
+        refPos = map[initY][initX + 1];
+      } else initX++;
       gameState.facing = 'east';
     } else if (command == 'west') {
       if (method == 'look') {
-        refPos = map[initY][initX + 1];
-      } else initX++;
+        refPos = map[initY][initX - 1];
+      } else initX--;
       gameState.facing = 'west';
     } else if (command == 'here') {
       method == 'look'
@@ -64,19 +64,17 @@ movement = (command, method) => {
       );
     }
     if (method == 'look') {
-      let items = refPos.items[0];
+      let items = refPos.items[0].getItemForTile;
       let itemDesc;
       if (items != undefined) {
-        for (const [key, value] of Object.entries(items)) {
-          if (value !== undefined) {
-            !!value.canSeeFromDistance
-              ? (itemDesc = value.message)
-              : (itemDesc = 'something that catches your eye');
-          }
-        }
+        console.log(items.canSeeFromDistance);
+        !!items.canSeeFromDistance
+          ? (itemDesc = items.message)
+          : (itemDesc = 'something that catches your eye');
         let secMess = 'and';
         if (command == 'here') {
-          isMessage = `A careful search of the area reveals ${map[initY][initX].lookRes.yellow} ${secMess.green} ${itemDesc.white}`;
+          items.canSeeFromDistance = true;
+          isMessage = `A careful search of the area reveals ${map[initY][initX].lookRes.yellow} ${secMess.green} ${items.message.white}`;
         } else {
           isMessage = `You see ${refPos.lookRes.yellow} ${secMess.green} ${itemDesc.white}`;
         }
