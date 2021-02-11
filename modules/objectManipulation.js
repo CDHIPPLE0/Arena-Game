@@ -1,41 +1,30 @@
 objectManipulation = (command) => {
-  let secCommands = {
-    north: (method) => {
-      colCheck(method, 'posY--');
-    },
-    east: (method) => {
-      colCheck(method, 'posX++');
-    },
-    south: (method) => {
-      colCheck(method, 'posY++');
-    },
-    west: (method) => {
-      colCheck(method, 'posX--');
-    },
-    here: (method) => {
-      colCheck(method, 'here');
-    },
-    self: (method) => {
-      colCheck(method, 'self');
-    },
+  take = () => {
+    initY = gameState.posY;
+    initX = gameState.posX;
+    let item;
+    if (map[initY][initX].items[0] != undefined) {
+      item = map[initY][initX].items[0].getItemForTile;
+    } else item = undefined;
+    if (item != undefined) {
+      handleOutput('fromObject', `take ${item.message.white}? yes/no`);
+      let command = process.stdin.on('data', (data) => {
+        let command = data.toString().trim();
+        command == 'yes'
+          ? gameState.transfer()
+          : handleOutput('fromObject', 'you leave the item');
+      });
+    } else handleOutput('fromObject', `nothing to take!`);
   };
-
   let statement = [];
   for (const [key, value] of Object.entries(command)) {
     if (value == true) {
       statement.push(key);
     }
   }
-  if (statement.length < 2) {
-    handleOutput('invalidMove2');
-  } else {
-    if (statement[0] == 'take') {
-      secCommands[statement[1]]('take');
-    }
+  if (statement[0] == 'take') {
+    take('take');
   }
-  handleOutput(
-    'fromObject',
-    map[gameState.posY][gameState.posX].message.green.italic
-  );
 };
+
 module.exports.objectManipulation = objectManipulation;

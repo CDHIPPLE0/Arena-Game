@@ -1,3 +1,5 @@
+const { gameState } = require('./gameState');
+
 module.exports.map = map = [
   ['x', 'x', 'x', 'x', 'x'],
   ['x', 'U', 'x', 'E', 'x'],
@@ -8,6 +10,7 @@ module.exports.map = map = [
   ['x', 'x', 'g', 'x', 'x'],
 ];
 
+gameState.time == 0;
 let itY = (itX = 0);
 while (itY < map.length) {
   while (itX < map[0].length) {

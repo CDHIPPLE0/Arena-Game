@@ -9,6 +9,9 @@ movement = (command, method) => {
       statement.push(key);
     }
   }
+  if (statement.length == 0) {
+    return 0;
+  }
   if (statement.length < 2) {
     handleOutput('invalidMove2');
   } else {
@@ -66,7 +69,6 @@ movement = (command, method) => {
         : (items = undefined);
       let itemDesc;
       if (items != undefined) {
-        console.log(items.canSeeFromDistance);
         !!items.canSeeFromDistance
           ? (itemDesc = items.message)
           : (itemDesc = 'something that catches your eye');

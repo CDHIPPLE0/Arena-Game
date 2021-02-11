@@ -1,3 +1,5 @@
+const { map } = require('../assets/map');
+
 module.exports.stdIn = process.stdin.on('data', (data) => {
   let command = data.toString().trim().split(' ');
   if (command[0] == 'debug') {
@@ -20,6 +22,9 @@ module.exports.stdIn = process.stdin.on('data', (data) => {
     handleOutput('start');
   } else {
     console.clear();
+    jump = () => {
+      return 0;
+    };
     handleInput(data);
   }
 });

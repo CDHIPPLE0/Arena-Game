@@ -1,6 +1,6 @@
 setItemMapPos = (key) => {
   let itemSet = {
-    31: {
+    52: {
       message: 'a small silver key',
       canTake: true,
       canSeeFromDistance: false,

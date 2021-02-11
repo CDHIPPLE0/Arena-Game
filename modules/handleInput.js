@@ -11,7 +11,6 @@ handleInput = (data) => {
     south: false,
     west: false,
     here: false,
-    self: false,
   };
   let input = data.toString().trim().split(' ');
   input.forEach((element) => {
@@ -30,15 +29,14 @@ handleInput = (data) => {
     south,
     west,
     here,
-    self,
   } = command;
-  let objectManipulation = !!use + !!strike + !!take + !!self;
-  let commandCount = !!walk + !!look + !!take + !!use + !!strike;
-  let directionCount = !!north + !!east + !!south + !!west + !!here + !!self;
-  if (commandCount <= 1 && directionCount <= 1) {
-    if (objectManipulation > 0) {
-      objectManipulation.objectManipulation(command);
-    } else movement(command);
+  let manipulationCount = !!use + !!strike + !!take;
+  let moveCount = !!walk + !!look;
+  let directionCount = !!north + !!east + !!south + !!west + !!here;
+  if (moveCount <= 1 && directionCount <= 1 && manipulationCount <= 0) {
+    movement(command);
+  } else if (manipulationCount == 1 && moveCount <= 0 && directionCount <= 0) {
+    objectManipulation(command);
   } else {
     handleOutput('invalidMove1');
   }

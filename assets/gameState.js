@@ -3,6 +3,10 @@ module.exports.gameState = gameState = {
   posY: 5,
   posX: 2,
   facing: 'north',
-  inventory: {},
+  inventory: [],
   debugToggle: false,
+  transfer: () => {
+    gameState.inventory = [map[gameState.posY][gameState.posX].items[0]];
+    map[gameState.posY][gameState.posX].items = [];
+  },
 };
