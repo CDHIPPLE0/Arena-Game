@@ -1,6 +1,4 @@
-let { gameState } = require('../modules/gameState');
-
-exports.stdIn = process.stdin.on('data', (data) => {
+module.exports.stdIn = process.stdin.on('data', (data) => {
   let command = data.toString().trim().split(' ');
   if (command[0] == 'debug') {
     gameState.debugToggle == false

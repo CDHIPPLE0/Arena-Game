@@ -1,4 +1,4 @@
-let gameState = {
+module.exports.gameState = gameState = {
   time: 0,
   posY: 5,
   posX: 2,
@@ -6,5 +6,3 @@ let gameState = {
   inventory: {},
   debugToggle: false,
 };
-
-exports.gameState = gameState;

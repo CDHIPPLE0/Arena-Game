@@ -1,6 +1,3 @@
-let { map } = require('../assets/map');
-let { gameState } = require('./gameState');
-
 objectManipulation = (command) => {
   let secCommands = {
     north: (method) => {
@@ -41,4 +38,4 @@ objectManipulation = (command) => {
     map[gameState.posY][gameState.posX].message.green.italic
   );
 };
-exports.objectManipulation = objectManipulation;
+module.exports.objectManipulation = objectManipulation;

@@ -1,4 +1,4 @@
-let tiles = function tiles(char) {
+tiles = (char) => {
   let tiles = {
     g: {
       lookRes: 'a gate',
@@ -51,5 +51,4 @@ let tiles = function tiles(char) {
   let tile = tiles[char];
   return tile;
 };
-
-exports.tiles = tiles;
+module.exports.tiles = tiles;

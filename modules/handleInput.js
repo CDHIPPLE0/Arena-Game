@@ -1,7 +1,4 @@
-let { gameState } = require('./gameState');
-const objectManipulation = require('./objectManipulation');
-
-exports.handleInput = handleInput = (data) => {
+handleInput = (data) => {
   statement = [];
   let command = {
     walk: false,
@@ -62,3 +59,5 @@ exports.handleInput = handleInput = (data) => {
     );
   }
 };
+
+module.exports.handleInput = handleInput;

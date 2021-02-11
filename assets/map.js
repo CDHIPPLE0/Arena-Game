@@ -1,8 +1,4 @@
-const tiles = require('./tiles');
-const setItemMapPos = require('./setItemMapPos');
-let { gameState } = require('../modules/gameState');
-
-const map = [
+module.exports.map = map = [
   ['x', 'x', 'x', 'x', 'x'],
   ['x', 'U', 'x', 'E', 'x'],
   ['x', 'U', 'x', 'G', 'x'],
@@ -15,7 +11,7 @@ const map = [
 let itY = (itX = 0);
 while (itY < map.length) {
   while (itX < map[0].length) {
-    let refElement = tiles.tiles(map[itY][itX].toString());
+    let refElement = tiles(map[itY][itX].toString());
     let newElement = {
       lookRes: refElement.lookRes,
       canPass: refElement.canPass,
@@ -25,7 +21,7 @@ while (itY < map.length) {
     };
     map[itY][itX] = newElement;
     let coordinates = itY.toString() + itX.toString();
-    let getItemForTile = setItemMapPos.setItemMapPos(coordinates);
+    let getItemForTile = setItemMapPos(coordinates);
     if (!!getItemForTile) {
       map[itY][itX].items.push({ getItemForTile });
     }
@@ -34,5 +30,3 @@ while (itY < map.length) {
   itX = 0;
   itY++;
 }
-
-exports.map = map;

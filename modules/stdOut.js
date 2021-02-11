@@ -1,15 +1,9 @@
-const outputMessage = require('../assets/messages');
-const {
-  error,
-  start,
-  invalidMove1,
-  invalidMove2,
-  debug,
-} = outputMessage.outputMessage;
+const { outputMessage } = require('../assets/outputMessage');
 
-exports.stdOut = handleOutput = (message, detail) => {
+let { error, start, invalidMove1, invalidMove2, debug } = outputMessage;
+module.exports.stdOut = handleOutput = (message, detail) => {
   let output;
-  let outputMessage = {
+  let printMessage = {
     fromObject: `${detail}`.green,
     invalidMove3: `${detail}\n`,
     error: error.red,
@@ -19,6 +13,6 @@ exports.stdOut = handleOutput = (message, detail) => {
     moveHere: detail,
     debug: debug.red,
   };
-  output = outputMessage[message] + '\n';
+  output = printMessage[message] + '\n';
   process.stdout.write(output);
 };

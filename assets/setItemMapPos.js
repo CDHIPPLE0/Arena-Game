@@ -1,4 +1,4 @@
-let setItemMapPos = function setItemMapPos(key) {
+setItemMapPos = (key) => {
   let itemSet = {
     31: {
       message: 'a small silver key',
@@ -20,4 +20,4 @@ let setItemMapPos = function setItemMapPos(key) {
   return itemSet[key];
 };
 
-exports.setItemMapPos = setItemMapPos;
+module.exports.setItemMapPos = setItemMapPos;

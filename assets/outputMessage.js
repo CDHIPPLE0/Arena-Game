@@ -18,4 +18,4 @@ const outputMessage = {
   debug: 'debug toggled',
 };
 
-exports.outputMessage = outputMessage;
+module.exports.outputMessage = outputMessage;

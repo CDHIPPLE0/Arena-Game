@@ -1,6 +1,3 @@
-let { map } = require('../assets/map');
-let { gameState } = require('./gameState');
-
 movement = (command, method) => {
   let initY = gameState.posY;
   let initX = gameState.posX;
@@ -92,4 +89,5 @@ movement = (command, method) => {
     }
   }
 };
-exports.movement = movement;
+
+module.exports.movement = movement;
