@@ -63,7 +63,10 @@ movement = (command, method) => {
       );
     }
     if (method == 'look') {
-      let items = refPos.items[0].getItemForTile;
+      let items;
+      !!refPos.items[0]
+        ? (items = refPos.items[0].getItemForTile)
+        : (items = undefined);
       let itemDesc;
       if (items != undefined) {
         console.log(items.canSeeFromDistance);
