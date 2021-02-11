@@ -55,7 +55,6 @@ movement = (command, method) => {
         gameState.posY = initY;
         gameState.posX = initX;
       } else {
-        //In the case that there is a collision the message from the tile will output in cyan. The program will then wait for further input
         handleOutput('invalidMove3', map[initY][initX].message.cyan);
       }
       handleOutput(

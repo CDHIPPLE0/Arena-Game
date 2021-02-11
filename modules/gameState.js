@@ -1,4 +1,3 @@
-//player coordinates and player/game condition
 let gameState = {
   time: 0,
   posY: 5,

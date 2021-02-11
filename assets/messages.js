@@ -1,5 +1,3 @@
-//Messages for the handleOutput function.
-
 const outputMessage = {
   error: 'ERROR !.',
   start: String.raw`                          

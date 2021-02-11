@@ -1,10 +1,8 @@
-//This sends the commands object as a statement to the movement function
 let { gameState } = require('./gameState');
 const objectManipulation = require('./objectManipulation');
 
 exports.handleInput = handleInput = (data) => {
   statement = [];
-  //these are all currently accepted commands
   let command = {
     walk: false,
     look: false,
@@ -18,15 +16,12 @@ exports.handleInput = handleInput = (data) => {
     here: false,
     self: false,
   };
-  //Data here is being sent from the process.stdin() at the base of the main function, the string is split and all valid commands extracted.
   let input = data.toString().trim().split(' ');
-  //iterates through the input array and sets any valid commands to true.
   input.forEach((element) => {
     if (command[element] != undefined) {
       command[element] = true;
     }
   });
-  //Here we ensure that only one command and one direction is being used, otherwise we notify the player of an improper move.
   const {
     walk,
     look,

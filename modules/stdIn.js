@@ -1,9 +1,7 @@
-//This is the first function run in main, it takes in what is typed in the console
 let { gameState } = require('../modules/gameState');
 
 exports.stdIn = process.stdin.on('data', (data) => {
   let command = data.toString().trim().split(' ');
-  //the first three conditions are for system commands debug, reset, and exit.
   if (command[0] == 'debug') {
     gameState.debugToggle == false
       ? (gameState.debugToggle = true)
@@ -24,7 +22,6 @@ exports.stdIn = process.stdin.on('data', (data) => {
     handleOutput('start');
   } else {
     console.clear();
-    //Here the data is sent to the handleInput function
     handleInput(data);
   }
 });

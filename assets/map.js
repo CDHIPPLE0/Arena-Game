@@ -1,7 +1,6 @@
 const tiles = require('./tiles');
 const setItemMapPos = require('./setItemMapPos');
 let { gameState } = require('../modules/gameState');
-//each map letter represents a tile object as imported above on a coordinate ^
 
 const map = [
   ['x', 'x', 'x', 'x', 'x'],

@@ -1,16 +1,9 @@
-//Tile objects for the map
-//____________NOTE TO SELF____ separate the items and add to tiles by reference.
-
 let tiles = function tiles(char) {
   let tiles = {
     g: {
-      //output if you look at the object
       lookRes: 'a gate',
-      //Collision variable
       canPass: false,
-      //outputs when you move or try to move onto the location
       message: 'There is an iron gate here, it will not budge.',
-      //items that might be in the tile.
     },
     x: {
       lookRes: 'a wall',
