@@ -8,5 +8,6 @@ module.exports.gameState = gameState = {
   transfer: () => {
     gameState.inventory = [map[gameState.posY][gameState.posX].items[0]];
     map[gameState.posY][gameState.posX].items = [];
+    handleOutput('fromObject', 'you stash it away');
   },
 };

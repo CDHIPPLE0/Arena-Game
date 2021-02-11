@@ -20,13 +20,17 @@ while (itY < map.length) {
       canPass: refElement.canPass,
       message: refElement.message,
       items: [],
-      canOpen: {},
+      use: refElement.use,
     };
     map[itY][itX] = newElement;
     let coordinates = itY.toString() + itX.toString();
     let getItemForTile = setItemMapPos(coordinates);
+    let getTileUse = setTileUse(coordinates);
     if (!!getItemForTile) {
       map[itY][itX].items.push({ getItemForTile });
+    }
+    if (!!getTileUse) {
+      map[itY][itX].use = getTileUse;
     }
     itX++;
   }
