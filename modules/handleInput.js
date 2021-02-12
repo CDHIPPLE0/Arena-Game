@@ -1,7 +1,11 @@
 const { handleInventory } = require('./handleInventory');
 const { outputMessage } = require('../assets/outputMessage');
-
+const { gameState } = require('../assets/gameState');
+let { gameScreen } = outputMessage;
 handleInput = (data) => {
+  if (gameState.time == 0) {
+    gameState.time++;
+  }
   let trueCount = 0;
   statement = [];
   let command = {

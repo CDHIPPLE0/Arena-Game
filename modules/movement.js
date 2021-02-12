@@ -58,7 +58,12 @@ movement = (command, method) => {
         gameState.posY = initY;
         gameState.posX = initX;
         map[initY][initX].charHere = true;
+        handleOutput(
+          'fromObject',
+          map[gameState.posY][gameState.posX].message.green.italic
+        );
       } else {
+        gameState.time++;
         handleOutput('invalidMove3', map[initY][initX].message.cyan);
       }
       if (map[initY][initX].actions) {
@@ -66,13 +71,8 @@ movement = (command, method) => {
           element();
         });
       }
-      handleOutput(
-        'fromObject',
-        map[gameState.posY][gameState.posX].message.green.italic
-      );
     }
     if (method == 'look') {
-      gameState.time++;
       let items;
       !!refPos.items[0]
         ? (items = refPos.items[0].getItemForTile)
@@ -85,13 +85,15 @@ movement = (command, method) => {
         let secMess = 'and';
         if (command == 'here') {
           items.canSeeFromDistance = true;
-          isMessage = `A careful search of the area reveals ${map[initY][initX].lookRes.yellow} ${secMess.green} ${items.message.white}`;
+          isMessage = `A careful search of the area reveals 
+${map[initY][initX].lookRes.yellow} ${secMess.green} ${items.message.white}`;
         } else {
           isMessage = `You see ${refPos.lookRes.yellow} ${secMess.green} ${itemDesc.white}`;
         }
         handleOutput('fromObject', isMessage);
       } else {
         if (command == 'here') {
+          gameState.time++;
           notMessage = `A careful search of the area reveals ${map[initY][initX].lookRes.yellow}`;
         } else {
           notMessage = `You see ${refPos.lookRes.yellow}`;

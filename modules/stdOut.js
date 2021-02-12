@@ -22,9 +22,20 @@ module.exports.stdOut = handleOutput = (message, detail) => {
     debug: debug.red,
     dead: dead.red,
   };
-  if (gameState.character.alive == true) {
-    output = printMessage[message] + '\n';
-    process.stdout.write(output);
+  //This is the debug information that can be toggled on/off.
+  if (gameState.endGame != true) {
+    if (gameState.character.alive == true) {
+      output = printMessage[message] + '\n';
+      if (gameState.time > 0) {
+        console.log(gameScreen.green);
+      }
+      process.stdout.write(output);
+    } else {
+      endGame = () => {
+        process.exit(0);
+      };
+      setTimeout(endGame, 3000);
+    }
   } else {
     endGame = () => {
       process.exit(0);

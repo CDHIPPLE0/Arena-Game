@@ -23,7 +23,7 @@ objectManipulation = (command) => {
       if (item != undefined) {
         gameState.actionQue.push(gameState.transfer);
         gameState.actionQue.push(gameState.transferReject);
-        handleOutput('fromObject', `take ${item.message.white}? yes/no`);
+        handleOutput('fromObject', `Take ${item.message.white}? yes / no`);
       } else handleOutput('fromObject', `there is nothing to take.`);
     };
     use = () => {
@@ -47,10 +47,7 @@ objectManipulation = (command) => {
       if (map[initY][initX].use != undefined) {
         if (gameState.inventory.length != 0) {
           map[initY][initX].use(gameState.inventory[0].name, initY, initX);
-          handleOutput(
-            'fromObject',
-            `you used the ${gameState.inventory[0].name.white}`
-          );
+          handleOutput('fromObject');
         } else handleOutput('fromObject', 'nothing to use');
       } else {
         handleOutput('fromObject', `nothing to do here`);

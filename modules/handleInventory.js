@@ -21,9 +21,12 @@ handleInventory = (command) => {
         gameState.isEquipping = false;
         handleOutput('fromObject', `You equip the ${item.name.white}`);
       } else {
-        handleOutput('fromObject', 'That slot is empty');
-        handleOutput('fromObject', 'You reach in your pack for:');
-        handleOutput('fromObject', inventoryList);
+        handleOutput(
+          'fromObject',
+          `That slot is empty
+          You reach in your pack for:
+    ${inventoryList}`
+        );
       }
     }
   }
@@ -33,8 +36,11 @@ handleInventory = (command) => {
         return `${(index + 1).toString().cyan}: ${element.name.white}`;
       });
       inventoryList = items.join(' | ');
-      handleOutput('fromObject', 'You reach in your pack for:');
-      handleOutput('fromObject', inventoryList);
+      handleOutput(
+        'fromObject',
+        `You reach in your pack for:
+   ${inventoryList}`
+      );
       gameState.isEquipping = true;
     } else {
       handleOutput('fromObject', 'You have nothing to wield');

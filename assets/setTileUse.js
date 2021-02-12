@@ -1,6 +1,6 @@
 setTileUse = (key) => {
   let objectProperty = {
-    12: function (name, y, x) {
+    23: function (name, y, x) {
       if (name == 'silver key') {
         map[y][x].canPass = true;
         map[y][x].message = 'You are standing in an open passage';

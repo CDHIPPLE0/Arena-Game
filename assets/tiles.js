@@ -46,6 +46,12 @@ tiles = (char) => {
       lookRes: 'an exit to the outdoors',
       canPass: true,
       message: 'You found the exit!.',
+      actions: [
+        () => {
+          handleOutput('win');
+          gameState.endGame = true;
+        },
+      ],
     },
     V: {
       lookRes: 'sharp spikes on the floor',
