@@ -6,13 +6,13 @@ setItemMapPos = (key) => {
       canTake: true,
       canSeeFromDistance: false,
     },
-    52: {
-      name: 'key',
+    31: {
+      name: 'silver key',
       message: 'a small silver key',
       canTake: true,
       canSeeFromDistance: false,
     },
-    51: {
+    33: {
       name: 'golden key',
       message: 'a small golden key',
       canTake: true,

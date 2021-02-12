@@ -9,6 +9,21 @@ module.exports.gameState = gameState = {
   actionQue: [],
   inventoryQue: [],
   isEquipping: false,
+  character: {
+    health: 100,
+    alive: true,
+    inflictDamage: (dam) => {
+      let damage = `You take ${dam} damage!`;
+      gameState.character.health = gameState.character.health -= dam;
+      if (gameState.character.health <= 0) {
+        handleOutput('fromObject', damage.red);
+        handleOutput('dead');
+        gameState.character.alive = false;
+      } else {
+        handleOutput('fromObject', damage.red);
+      }
+    },
+  },
   transfer: () => {
     if (gameState.inventory.length < 5) {
       gameState.inventory.push(

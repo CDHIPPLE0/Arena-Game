@@ -1,6 +1,6 @@
 const { outputMessage } = require('../assets/outputMessage');
 
-let { error, start, invalidMove1, invalidMove2, debug } = outputMessage;
+let { error, start, invalidMove1, invalidMove2, debug, dead } = outputMessage;
 module.exports.stdOut = handleOutput = (message, detail) => {
   let output;
   let printMessage = {
@@ -12,7 +12,15 @@ module.exports.stdOut = handleOutput = (message, detail) => {
     invalidMove2: invalidMove2.green,
     moveHere: detail,
     debug: debug.red,
+    dead: dead.red,
   };
-  output = printMessage[message] + '\n';
-  process.stdout.write(output);
+  if (gameState.character.alive == true) {
+    output = printMessage[message] + '\n';
+    process.stdout.write(output);
+  } else {
+    endGame = () => {
+      process.exit(0);
+    };
+    setTimeout(endGame, 3000);
+  }
 };

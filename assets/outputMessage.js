@@ -18,6 +18,7 @@ const outputMessage = {
               Directions : north, east, south, west, here
               System : exit, reset, debug `,
   invalidMove2: 'invalid command',
+  dead: 'You are dead',
   debug: 'debug toggled',
 };
 

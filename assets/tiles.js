@@ -1,3 +1,5 @@
+const { gameState } = require('./gameState');
+
 tiles = (char) => {
   let tiles = {
     g: {
@@ -38,13 +40,23 @@ tiles = (char) => {
     G: {
       lookRes: 'a gated exit',
       canPass: false,
-      message:
-        'There is a gate before you, it is fitted with a large brass lock.',
+      message: 'There is a gate before you, it is fitted with a lock.',
     },
     E: {
       lookRes: 'an exit to the outdoors',
       canPass: true,
       message: 'You found the exit!.',
+    },
+    V: {
+      lookRes: 'sharp spikes on the floor',
+      canPass: true,
+      message: 'You are standing on spikes it is painful.',
+      actions: [
+        () => {
+          handleOutput('fromObject', 'The spikes pierce your feet');
+          gameState.character.inflictDamage(50);
+        },
+      ],
     },
   };
 

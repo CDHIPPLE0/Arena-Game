@@ -57,6 +57,12 @@ movement = (command, method) => {
       } else {
         handleOutput('invalidMove3', map[initY][initX].message.cyan);
       }
+
+      if (map[initY][initX].actions) {
+        map[gameState.posY][gameState.posX].actions.forEach((element) => {
+          element();
+        });
+      }
       handleOutput(
         'fromObject',
         map[gameState.posY][gameState.posX].message.green.italic

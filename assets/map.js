@@ -5,7 +5,7 @@ module.exports.map = map = [
   ['x', 'U', 'x', 'E', 'x'],
   ['x', 'U', 'x', 'G', 'x'],
   ['x', 'v', 'u', 'w', 'x'],
-  ['x', 'o', 'G', 'o', 'x'],
+  ['x', 'o', 'V', 'o', 'x'],
   ['x', 'U', 'u', 'U', 'x'],
   ['x', 'x', 'g', 'x', 'x'],
 ];
@@ -19,7 +19,10 @@ while (itY < map.length) {
       lookRes: refElement.lookRes,
       canPass: refElement.canPass,
       message: refElement.message,
+      actions: refElement.actions,
       items: [],
+      npcHere: false,
+      charHere: false,
       use: refElement.use,
     };
     map[itY][itX] = newElement;
