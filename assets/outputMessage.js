@@ -1,14 +1,14 @@
 const outputMessage = {
   error: 'ERROR !.',
   start: String.raw` 
-
-       -- Behind you is a sealed gate it is too dark to see far --
   -----------------------------------------------------------------------
                   AAA   RRRRRR  EEEEEEE NN   NN   AAA   
                  AAAAA  RR   RR EE      NNN  NN  AAAAA  
                 AA   AA RRRRRR  EEEEE   NN N NN AA   AA 
                 AAAAAAA RR  RR  EE      NN  NNN AAAAAAA 
                 AA   AA RR   RR EEEEEEE NN   NN AA   AA 
+  -----------------------------------------------------------------------
+      -- BEHIND YOU IS A SEALED GATE, IT IS TOO DARK TO SEE FAR --  
   -----------------------------------------------------------------------
   Base Commands: walk, look, take, wield
   Directions : north, east, south, west, here
