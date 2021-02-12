@@ -8,6 +8,7 @@ const { map } = require('./assets/map');
 const { stdIn } = require('./modules/stdIn');
 const { stdOut } = require('./modules/stdOut');
 const { objectManipulation } = require('./modules/objectManipulation');
+const { handleInventory } = require('./modules/handleInventory');
 const { handleInput } = require('./modules/handleInput');
 const { movement } = require('./modules/movement');
 const colors = require('colors');

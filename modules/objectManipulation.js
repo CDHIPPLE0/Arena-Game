@@ -7,6 +7,11 @@ objectManipulation = (command) => {
       statement.push(key);
     }
   }
+  if (statement == 'yes' || statement == 'no') {
+    if (gameState.actionQue.length == 0) {
+      handleOutput('invalidMove2');
+    }
+  }
   if (gameState.actionQue.length == 0) {
     take = () => {
       initY = gameState.posY;
@@ -40,16 +45,21 @@ objectManipulation = (command) => {
       };
       facing[gameState.facing]();
       if (map[initY][initX].use != undefined) {
-        map[initY][initX].use(
-          gameState.inventory[0].getItemForTile.name,
-          initY,
-          initX
-        );
+        if (gameState.inventory.length != 0) {
+          map[initY][initX].use(
+            gameState.inventory[0].getItemForTile.name,
+            initY,
+            initX
+          );
+          handleOutput(
+            'fromObject',
+            `you used the ${gameState.inventory[0].getItemForTile.name.white}`
+          );
+        } else handleOutput('fromObject', 'nothing to use');
       } else {
         handleOutput('fromObject', `nothing to do here`);
       }
     };
-    let inventory = gameState.inventory;
     if (statement[0] == 'take') {
       take();
     } else if (statement[0] == 'use') {

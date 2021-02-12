@@ -6,12 +6,6 @@ setItemMapPos = (key) => {
       canTake: true,
       canSeeFromDistance: false,
     },
-    51: {
-      name: 'key',
-      message: 'a small silver key',
-      canTake: true,
-      canSeeFromDistance: false,
-    },
     41: {
       name: 'prop',
       message: 'deep scratches on the pillar',

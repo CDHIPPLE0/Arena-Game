@@ -14,7 +14,7 @@ const outputMessage = {
   Directions : north, east, south, west, here
   System : exit, reset, debug `,
   invalidMove1: 'You can perform one action per turn',
-  invalidMove2: 'That command is not understood',
+  invalidMove2: 'invalid command',
   debug: 'debug toggled',
 };
 
