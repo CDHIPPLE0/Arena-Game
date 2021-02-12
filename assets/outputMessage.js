@@ -23,7 +23,7 @@ const outputMessage = {
   -----------------------------------------------------------------------
  `,
   invalidMove1: 'You can perform one action per turn',
-  commandList: `Base Commands: walk, look, use, take, wield
+  commandList: `Base Commands: walk, look, wield, use, take, drop 
               Directions : north, east, south, west, here
               System : exit, debug `,
   invalidMove2: 'Invalid command',
