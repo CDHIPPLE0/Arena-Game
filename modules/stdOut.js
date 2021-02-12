@@ -20,7 +20,6 @@ module.exports.stdOut = handleOutput = (message, detail) => {
     invalidMove2: invalidMove2.green,
     moveHere: detail,
     debug: debug.red,
-    dead: dead.red,
   };
   //This is the debug information that can be toggled on/off.
   if (gameState.endGame != true) {
@@ -34,12 +33,12 @@ module.exports.stdOut = handleOutput = (message, detail) => {
       endGame = () => {
         process.exit(0);
       };
-      setTimeout(endGame, 3000);
+      setTimeout(endGame, 2000);
     }
   } else {
     endGame = () => {
       process.exit(0);
     };
-    setTimeout(endGame, 3000);
+    setTimeout(endGame, 2000);
   }
 };

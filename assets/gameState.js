@@ -17,11 +17,11 @@ module.exports.gameState = gameState = {
       let damage = `You take ${dam} damage!`;
       gameState.character.health = gameState.character.health -= dam;
       if (gameState.character.health <= 0) {
-        handleOutput('fromObject', damage.red);
-        handleOutput('dead');
+        console.log(damage.red);
+        console.log('you are dead'.red);
         gameState.character.alive = false;
       } else {
-        handleOutput('fromObject', damage.red);
+        console.log(damage.red);
       }
     },
   },

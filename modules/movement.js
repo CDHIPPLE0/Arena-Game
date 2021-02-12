@@ -47,29 +47,31 @@ movement = (command, method) => {
       } else initX--;
       gameState.facing = 'west';
     } else if (command == 'here') {
-      method == 'look'
-        ? (refPos = map[initY][initX])
-        : handleOutput('moveHere', 'You shuffle around in place');
+      method == 'look' && (refPos = map[initY][initX]);
     }
     if (method == 'walk') {
-      if (map[initY][initX].canPass) {
-        gameState.time++;
-        map[gameState.posY][gameState.posX].charHere = false;
-        gameState.posY = initY;
-        gameState.posX = initX;
-        map[initY][initX].charHere = true;
-        handleOutput(
-          'fromObject',
-          map[gameState.posY][gameState.posX].message.green.italic
-        );
+      if (initY !== gameState.posY || initX !== gameState.posX) {
+        if (map[initY][initX].canPass) {
+          gameState.time++;
+          map[gameState.posY][gameState.posX].charHere = false;
+          gameState.posY = initY;
+          gameState.posX = initX;
+          map[initY][initX].charHere = true;
+          handleOutput(
+            'fromObject',
+            map[gameState.posY][gameState.posX].message.green.italic
+          );
+        } else {
+          gameState.time++;
+          handleOutput('invalidMove3', map[initY][initX].message.cyan);
+        }
+        if (map[initY][initX].actions) {
+          map[gameState.posY][gameState.posX].actions.forEach((element) => {
+            element();
+          });
+        }
       } else {
-        gameState.time++;
-        handleOutput('invalidMove3', map[initY][initX].message.cyan);
-      }
-      if (map[initY][initX].actions) {
-        map[gameState.posY][gameState.posX].actions.forEach((element) => {
-          element();
-        });
+        handleOutput('fromObject', 'You shuffle around in place');
       }
     }
     if (method == 'look') {

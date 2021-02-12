@@ -59,7 +59,6 @@ tiles = (char) => {
       message: 'You are standing on spikes it is painful.',
       actions: [
         () => {
-          handleOutput('fromObject', 'The spikes pierce your feet');
           gameState.character.inflictDamage(50);
         },
       ],

@@ -28,7 +28,6 @@ const outputMessage = {
               System : exit, debug `,
   invalidMove2: 'Invalid command',
   invalidMove3: 'You cannot move there',
-  dead: 'You are dead',
   win: 'You made it out alive!',
   debug: 'debug toggled',
 };
