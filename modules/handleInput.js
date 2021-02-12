@@ -5,6 +5,8 @@ handleInput = (data) => {
     look: false,
     take: false,
     use: false,
+    yes: false,
+    no: false,
     strike: false,
     north: false,
     east: false,
@@ -23,6 +25,8 @@ handleInput = (data) => {
     look,
     take,
     use,
+    yes,
+    no,
     strike,
     north,
     east,
@@ -30,7 +34,7 @@ handleInput = (data) => {
     west,
     here,
   } = command;
-  let manipulationCount = !!use + !!strike + !!take;
+  let manipulationCount = !!use + !!strike + !!take + !!yes + !!no;
   let moveCount = !!walk + !!look;
   let directionCount = !!north + !!east + !!south + !!west + !!here;
   if (moveCount <= 1 && directionCount <= 1 && manipulationCount <= 0) {

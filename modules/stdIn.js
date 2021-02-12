@@ -22,9 +22,6 @@ module.exports.stdIn = process.stdin.on('data', (data) => {
     handleOutput('start');
   } else {
     console.clear();
-    jump = () => {
-      return 0;
-    };
     handleInput(data);
   }
 });

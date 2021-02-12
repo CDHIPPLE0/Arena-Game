@@ -5,9 +5,14 @@ module.exports.gameState = gameState = {
   facing: 'north',
   inventory: [],
   debugToggle: false,
+  selectionUse: [],
+  actionQue: [],
   transfer: () => {
-    gameState.inventory = [map[gameState.posY][gameState.posX].items[0]];
+    gameState.inventory.push(map[gameState.posY][gameState.posX].items[0]);
     map[gameState.posY][gameState.posX].items = [];
     handleOutput('fromObject', 'you stash it away');
+  },
+  transferReject: () => {
+    handleOutput('fromObject', 'you leave it alone');
   },
 };
