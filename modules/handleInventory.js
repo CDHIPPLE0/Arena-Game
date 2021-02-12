@@ -1,4 +1,5 @@
 const { gameState } = require('../assets/gameState');
+const { map } = require('../assets/map');
 
 handleInventory = (command) => {
   let statement = [];
@@ -13,6 +14,7 @@ handleInventory = (command) => {
   if (statement == 'three') statement = 3;
   if (statement == 'four') statement = 4;
   if (statement == 'five') statement = 5;
+
   if (gameState.isEquipping == true) {
     if (Number(statement) != NaN) {
       if (gameState.inventory[Number(statement - 1)]) {
@@ -40,6 +42,18 @@ handleInventory = (command) => {
       gameState.isEquipping = true;
     } else {
       handleOutput('fromObject', 'You have nothing to wield');
+    }
+  }
+  if (statement == 'drop') {
+    if (gameState.inventory.length > 0) {
+      let item = gameState.inventory[0].name;
+      map[gameState.posY][gameState.posX].items.push({
+        getItemForTile: gameState.inventory[0],
+      });
+      gameState.inventory.shift(1);
+      handleOutput('fromObject', `You drop the ${item.white}`);
+    } else {
+      handleOutput('fromObject', 'There is nothing to drop');
     }
   }
 };

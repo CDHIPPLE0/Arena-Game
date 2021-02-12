@@ -13,6 +13,7 @@ handleInput = (data) => {
     look: false,
     take: false,
     wield: false,
+    drop: false,
     one: false,
     two: false,
     three: false,
@@ -90,6 +91,12 @@ handleInput = (data) => {
     } else {
       handleOutput('invalidMove1');
     }
+    console.log(`Health: ${gameState.character.health}`.magenta);
+    console.log(
+      !!gameState.inventory.length > 0
+        ? `Wielding: ${gameState.inventory[0].name}`.white
+        : `Wielding: nothing`.white
+    );
     //This is the debug information that can be toggled on/off.
     if (gameState.debugToggle == true) {
       console.log('\n');

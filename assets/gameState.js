@@ -22,7 +22,7 @@ module.exports.gameState = gameState = {
           console.clear();
           process.exit(0);
         };
-        setTimeout(endGame, 1000);
+        setTimeout(endGame, 2000);
       } else {
         console.log(damage.red);
       }

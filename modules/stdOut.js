@@ -22,7 +22,7 @@ module.exports.stdOut = handleOutput = (message, detail) => {
     debug: debug.red,
   };
   //This is the debug information that can be toggled on/off.
-  output = printMessage[message] + '\n';
+  output = printMessage[message] + '\n' + '\n';
   if (gameState.time > 0) {
     console.log(gameScreen.green);
   }
