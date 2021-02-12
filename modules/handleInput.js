@@ -1,4 +1,5 @@
 const { handleInventory } = require('./handleInventory');
+const { outputMessage } = require('../assets/outputMessage');
 
 handleInput = (data) => {
   let trueCount = 0;
@@ -100,6 +101,7 @@ handleInput = (data) => {
         'posX:',
         gameState.posX.toString().red
       );
+      console.log(outputMessage.commandList.cyan);
     }
   } else {
     handleOutput('invalidMove2');

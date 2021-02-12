@@ -46,14 +46,10 @@ objectManipulation = (command) => {
       facing[gameState.facing]();
       if (map[initY][initX].use != undefined) {
         if (gameState.inventory.length != 0) {
-          map[initY][initX].use(
-            gameState.inventory[0].getItemForTile.name,
-            initY,
-            initX
-          );
+          map[initY][initX].use(gameState.inventory[0].name, initY, initX);
           handleOutput(
             'fromObject',
-            `you used the ${gameState.inventory[0].getItemForTile.name.white}`
+            `you used the ${gameState.inventory[0].name.white}`
           );
         } else handleOutput('fromObject', 'nothing to use');
       } else {

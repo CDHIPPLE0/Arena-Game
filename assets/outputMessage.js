@@ -10,10 +10,13 @@ const outputMessage = {
                 AAAAAAA RR  RR  EE      NN  NNN AAAAAAA 
                 AA   AA RR   RR EEEEEEE NN   NN AA   AA 
   -----------------------------------------------------------------------
-  Base Commands: walk, look 
+  Base Commands: walk, look, take, wield
   Directions : north, east, south, west, here
   System : exit, reset, debug `,
   invalidMove1: 'You can perform one action per turn',
+  commandList: `Base Commands: walk, look, take, wield
+              Directions : north, east, south, west, here
+              System : exit, reset, debug `,
   invalidMove2: 'invalid command',
   debug: 'debug toggled',
 };

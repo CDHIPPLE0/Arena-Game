@@ -11,7 +11,9 @@ module.exports.gameState = gameState = {
   isEquipping: false,
   transfer: () => {
     if (gameState.inventory.length < 5) {
-      gameState.inventory.push(map[gameState.posY][gameState.posX].items[0]);
+      gameState.inventory.push(
+        map[gameState.posY][gameState.posX].items[0].getItemForTile
+      );
       map[gameState.posY][gameState.posX].items = [];
       handleOutput('fromObject', 'you stash it away');
     } else handleOutput('fromObject', 'you cannot carry any more items');
@@ -19,8 +21,16 @@ module.exports.gameState = gameState = {
   transferReject: () => {
     handleOutput('fromObject', 'you leave it alone');
   },
-  equipItem: (index) => {
-    gameState.inventory.unshift(gameState.inventory[index]);
-    gameState.inventory.splice(gameState.inventory[index + 1]);
+  equipItem: (item) => {
+    if (gameState.inventory.length > 1) {
+      let thisItem = gameState.inventory[item];
+      gameState.inventory.unshift({
+        name: thisItem.name,
+        message: thisItem.message,
+        canTake: thisItem.canTake,
+        canSeeFromDistance: thisItem.canSeeFromDistance,
+      });
+      gameState.inventory.splice(item + 1, 1);
+    }
   },
 };

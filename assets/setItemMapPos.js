@@ -1,8 +1,20 @@
 setItemMapPos = (key) => {
   let itemSet = {
+    53: {
+      name: 'ruby key',
+      message: 'a small ruby key',
+      canTake: true,
+      canSeeFromDistance: false,
+    },
     52: {
       name: 'key',
       message: 'a small silver key',
+      canTake: true,
+      canSeeFromDistance: false,
+    },
+    51: {
+      name: 'golden key',
+      message: 'a small golden key',
       canTake: true,
       canSeeFromDistance: false,
     },
