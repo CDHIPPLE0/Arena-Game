@@ -71,7 +71,13 @@ movement = (command, method) => {
           });
         }
       } else {
+        gameState.time++;
         handleOutput('fromObject', 'You shuffle around in place');
+        if (map[initY][initX].actions) {
+          map[gameState.posY][gameState.posX].actions.forEach((element) => {
+            element();
+          });
+        }
       }
     }
     if (method == 'look') {

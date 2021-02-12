@@ -33,12 +33,12 @@ module.exports.stdOut = handleOutput = (message, detail) => {
       endGame = () => {
         process.exit(0);
       };
-      setTimeout(endGame, 2000);
+      setTimeout(endGame, 1000);
     }
   } else {
     endGame = () => {
       process.exit(0);
     };
-    setTimeout(endGame, 2000);
+    setTimeout(endGame, 1000);
   }
 };

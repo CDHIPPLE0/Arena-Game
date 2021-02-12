@@ -2,11 +2,11 @@ const { gameState } = require('./gameState');
 
 module.exports.map = map = [
   ['x', 'x', 'x', 'x', 'x'],
-  ['x', 'U', 'x', 'E', 'x'],
+  ['x', 'U', 'V', 'E', 'x'],
   ['x', 'V', 'x', 'G', 'x'],
   ['x', 'v', 'u', 'w', 'x'],
   ['x', 'o', 'u', 'o', 'x'],
-  ['x', 'U', 'u', 'U', 'x'],
+  ['x', 'V', 'u', 'U', 'x'],
   ['x', 'x', 'g', 'x', 'x'],
 ];
 
