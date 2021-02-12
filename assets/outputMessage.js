@@ -10,9 +10,9 @@ const outputMessage = {
   -----------------------------------------------------------------------
       -- BEHIND YOU IS A SEALED GATE, IT IS TOO DARK TO SEE FAR --  
   -----------------------------------------------------------------------
-  Base Commands: walk, look, take, wield
+  Base Commands: walk, look, wield, use, take, drop
   Directions : north, east, south, west, here
-  System : exit, reset, debug `,
+  System : exit, debug `,
   gameScreen: String.raw`                          
   -----------------------------------------------------------------------
                   AAA   RRRRRR  EEEEEEE NN   NN   AAA   
