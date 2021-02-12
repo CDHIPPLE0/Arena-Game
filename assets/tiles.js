@@ -49,12 +49,11 @@ tiles = (char) => {
       actions: [
         () => {
           console.log('You made it out alive'.green);
-          gameState.endGame = true;
-
           endGame = () => {
+            console.clear();
             process.exit(0);
           };
-          setTimeout(endGame, 1000);
+          setTimeout(endGame, 3000);
         },
       ],
     },

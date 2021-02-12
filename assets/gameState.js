@@ -1,6 +1,5 @@
 module.exports.gameState = gameState = {
   time: 0,
-  endGame: false,
   posY: 5,
   posX: 2,
   facing: 'north',
