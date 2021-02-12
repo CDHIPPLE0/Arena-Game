@@ -19,7 +19,11 @@ module.exports.gameState = gameState = {
       if (gameState.character.health <= 0) {
         console.log(damage.red);
         console.log('you are dead'.red);
-        gameState.character.alive = false;
+        endGame = () => {
+          console.clear();
+          process.exit(0);
+        };
+        setTimeout(endGame, 1000);
       } else {
         console.log(damage.red);
       }

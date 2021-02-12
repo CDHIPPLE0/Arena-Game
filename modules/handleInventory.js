@@ -21,13 +21,9 @@ handleInventory = (command) => {
         gameState.isEquipping = false;
         handleOutput('fromObject', `You equip the ${item.name.white}`);
       } else {
-        handleOutput(
-          'fromObject',
-          `That slot is empty
-          You reach in your pack for:
-    ${inventoryList}`
-        );
+        handleOutput('fromObject', `That slot is empty`.green);
       }
+      gameState.isEquipping = false;
     }
   }
   if (statement == 'wield') {
