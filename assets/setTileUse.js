@@ -7,10 +7,7 @@ setTileUse = (key) => {
         map[y][x].lookRes = 'an open gateway';
         handleOutput('fromObject', 'The gate is open');
       } else {
-        handleOutput(
-          'fromObject',
-          'The silver lock cannot be opened by this item'
-        );
+        console.log('The silver lock cannot be opened by this item'.green);
       }
     },
   };

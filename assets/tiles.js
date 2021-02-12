@@ -48,7 +48,7 @@ tiles = (char) => {
       message: 'You found the exit!.',
       actions: [
         () => {
-          handleOutput('win');
+          console.log('You made it out alive'.green);
           gameState.endGame = true;
         },
       ],
