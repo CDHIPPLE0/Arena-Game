@@ -1,3 +1,5 @@
+const { gameState } = require('../assets/gameState');
+
 movement = (command, method) => {
   let initY = gameState.posY;
   let initX = gameState.posX;
@@ -52,12 +54,13 @@ movement = (command, method) => {
     if (method == 'walk') {
       if (map[initY][initX].canPass) {
         gameState.time++;
+        map[gameState.posY][gameState.posX].charHere = false;
         gameState.posY = initY;
         gameState.posX = initX;
+        map[initY][initX].charHere = true;
       } else {
         handleOutput('invalidMove3', map[initY][initX].message.cyan);
       }
-
       if (map[initY][initX].actions) {
         map[gameState.posY][gameState.posX].actions.forEach((element) => {
           element();
@@ -69,6 +72,7 @@ movement = (command, method) => {
       );
     }
     if (method == 'look') {
+      gameState.time++;
       let items;
       !!refPos.items[0]
         ? (items = refPos.items[0].getItemForTile)

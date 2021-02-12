@@ -1,6 +1,14 @@
 const { outputMessage } = require('../assets/outputMessage');
 
-let { error, start, invalidMove1, invalidMove2, debug, dead } = outputMessage;
+let {
+  error,
+  start,
+  invalidMove1,
+  invalidMove2,
+  debug,
+  dead,
+  gameScreen,
+} = outputMessage;
 module.exports.stdOut = handleOutput = (message, detail) => {
   let output;
   let printMessage = {

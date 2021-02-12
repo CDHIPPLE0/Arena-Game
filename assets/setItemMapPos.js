@@ -12,7 +12,7 @@ setItemMapPos = (key) => {
       canTake: true,
       canSeeFromDistance: false,
     },
-    33: {
+    51: {
       name: 'golden key',
       message: 'a small golden key',
       canTake: true,
@@ -24,7 +24,7 @@ setItemMapPos = (key) => {
       canTake: false,
       canSeeFromDistance: true,
     },
-    62: {
+    50: {
       name: 'prop',
       message: 'a strange stain on the wall',
       canTake: false,

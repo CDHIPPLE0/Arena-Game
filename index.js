@@ -16,6 +16,7 @@ const colors = require('colors');
 function main() {
   if (gameState.time === 0) {
     console.clear();
+    map[gameState.posY][gameState.posX].charHere = true;
     handleOutput('start');
   }
 }
