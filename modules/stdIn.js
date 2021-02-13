@@ -2,7 +2,7 @@ const { map } = require('../assets/map');
 
 module.exports.stdIn = process.stdin.on('data', (data) => {
   let command = data.toString().trim().split(' ');
-  if (command[0] == 'debug') {
+  if (command[0] == 'hud') {
     gameState.debugToggle == false
       ? (gameState.debugToggle = true)
       : (gameState.debugToggle = false);

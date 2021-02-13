@@ -61,6 +61,7 @@ movement = (command, method) => {
             'fromObject',
             map[gameState.posY][gameState.posX].message.green.italic
           );
+          console.log(`You take a step ${command}`.green);
         } else {
           gameState.time++;
           handleOutput('invalidMove3', map[initY][initX].message.cyan);
@@ -99,6 +100,9 @@ ${map[initY][initX].lookRes.yellow} ${secMess.green} ${items.message.white}`;
           isMessage = `You see ${refPos.lookRes.yellow} ${secMess.green} ${itemDesc.white}`;
         }
         handleOutput('fromObject', isMessage);
+        command != 'here'
+          ? console.log(`You look to the ${command}`.green)
+          : console.log(`You look around`.green);
       } else {
         if (command == 'here') {
           gameState.time++;
@@ -107,6 +111,9 @@ ${map[initY][initX].lookRes.yellow} ${secMess.green} ${items.message.white}`;
           notMessage = `You see ${refPos.lookRes.yellow}`;
         }
         handleOutput('fromObject', notMessage);
+        command != 'here'
+          ? console.log(`You look to the ${command}`.green)
+          : console.log(`You look around`.green);
       }
     }
   }
