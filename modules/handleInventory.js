@@ -14,9 +14,7 @@ handleInventory = (command) => {
   if (statement == 'three') statement = 3;
   if (statement == 'four') statement = 4;
   if (statement == 'five') statement = 5;
-  if (gameState.isEquipping == false && Number(statement) != NaN) {
-    handleOutput('invalidMove2');
-  }
+
   if (gameState.isEquipping == true) {
     if (Number(statement) != NaN) {
       if (gameState.inventory[Number(statement - 1)]) {
